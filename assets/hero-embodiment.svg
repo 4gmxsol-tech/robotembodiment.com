@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">Robot Embodiment — Embodied AI hero artwork</title>
+<desc id="desc">A futuristic humanoid robot beside a connected globe representing perception, models, control and physical intelligence.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050b14"/><stop offset=".55" stop-color="#071a2b"/><stop offset="1" stop-color="#030812"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#11cfff" stop-opacity=".34"/><stop offset="1" stop-color="#11cfff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5fbff"/><stop offset=".28" stop-color="#9fb1bf"/><stop offset=".58" stop-color="#253342"/><stop offset="1" stop-color="#0b121b"/></linearGradient>
+  <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#00d9ff"/><stop offset="1" stop-color="#4d7cff"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="35"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="1210" cy="410" r="330" fill="url(#halo)"/>
+<g opacity=".18" stroke="#39cfff" fill="none">
+  <path d="M930 410c150-250 480-260 650 0"/><path d="M960 500c160 180 450 180 610 0"/>
+  <ellipse cx="1210" cy="440" rx="280" ry="105"/><ellipse cx="1210" cy="440" rx="280" ry="220"/>
+</g>
+<!-- connected globe -->
+<g transform="translate(930 160)" filter="url(#glow)">
+  <circle cx="280" cy="280" r="220" fill="#071522" stroke="#20cfff" stroke-opacity=".55" stroke-width="3"/>
+  <ellipse cx="280" cy="280" rx="220" ry="85" fill="none" stroke="#31d7ff" stroke-opacity=".35" stroke-width="2"/>
+  <ellipse cx="280" cy="280" rx="95" ry="220" fill="none" stroke="#31d7ff" stroke-opacity=".25" stroke-width="2"/>
+  <path d="M75 230Q280 145 485 230M75 330Q280 415 485 330" fill="none" stroke="#31d7ff" stroke-opacity=".25" stroke-width="2"/>
+  <g fill="#19d9ff">
+    <circle cx="140" cy="225" r="7"/><circle cx="215" cy="165" r="6"/><circle cx="355" cy="190" r="7"/><circle cx="430" cy="275" r="6"/><circle cx="285" cy="355" r="7"/><circle cx="165" cy="345" r="5"/>
+  </g>
+  <g stroke="#8b7cff" stroke-width="2" stroke-opacity=".65"><path d="M140 225L215 165L355 190L430 275L285 355L165 345Z"/></g>
+</g>
+<!-- robot -->
+<g transform="translate(330 115)">
+  <!-- back glow -->
+  <ellipse cx="420" cy="600" rx="300" ry="90" fill="#00bfff" opacity=".11" filter="url(#soft)"/>
+  <!-- head -->
+  <path d="M330 70Q420 15 520 70L570 150Q560 230 500 270L395 270Q315 225 300 150Z" fill="url(#metal)" stroke="#8ca2b5" stroke-width="4"/>
+  <path d="M335 130Q425 85 530 125L535 170Q430 205 335 170Z" fill="#07111b" stroke="#1cd5ff" stroke-opacity=".45" stroke-width="3"/>
+  <circle cx="435" cy="150" r="38" fill="#03101a" stroke="#12d9ff" stroke-width="6" filter="url(#glow)"/>
+  <circle cx="435" cy="150" r="13" fill="#e7fbff"/>
+  <path d="M325 205Q430 260 545 205" fill="none" stroke="#00d7ff" stroke-width="3" opacity=".55"/>
+  <!-- neck -->
+  <path d="M390 250L390 315L500 315L500 250" fill="#182634" stroke="#6f8798" stroke-width="3"/>
+  <path d="M410 270L480 270M410 290L480 290" stroke="#00d9ff" opacity=".55"/>
+  <!-- torso -->
+  <path d="M300 315Q440 275 585 320L650 590Q540 665 350 590Z" fill="url(#metal)" stroke="#8aa0b0" stroke-width="4"/>
+  <path d="M355 350Q440 320 535 350L555 520Q450 555 370 520Z" fill="#091522" stroke="#16cfff" stroke-opacity=".35" stroke-width="3"/>
+  <path d="M405 380L505 380M395 415L515 415M400 450L510 450" stroke="#3f6376" stroke-width="5"/>
+  <circle cx="455" cy="490" r="16" fill="#00d9ff" filter="url(#glow)"/>
+  <!-- left shoulder/arm -->
+  <circle cx="315" cy="345" r="48" fill="#223341" stroke="#9eb1bf" stroke-width="4"/>
+  <path d="M285 370L215 485Q195 525 220 555L275 580Q305 565 300 525L335 425Z" fill="url(#metal)" stroke="#879ba9" stroke-width="4"/>
+  <circle cx="250" cy="520" r="28" fill="#0b1722" stroke="#19d8ff" stroke-width="4"/>
+  <path d="M225 550L180 655L225 680L275 575Z" fill="url(#metal)" stroke="#879ba9" stroke-width="4"/>
+  <!-- right shoulder/arm reaching globe -->
+  <circle cx="580" cy="355" r="48" fill="#223341" stroke="#9eb1bf" stroke-width="4"/>
+  <path d="M605 380L690 455L785 405L810 445L700 535L600 475Z" fill="url(#metal)" stroke="#879ba9" stroke-width="4"/>
+  <circle cx="800" cy="425" r="25" fill="#0b1722" stroke="#19d8ff" stroke-width="4"/>
+  <path d="M815 425L880 390M815 430L885 425M815 435L875 455" stroke="#b9cbd6" stroke-width="8" stroke-linecap="round"/>
+  <!-- hips -->
+  <path d="M350 585L550 585L590 665L315 665Z" fill="#172532" stroke="#8ba0af" stroke-width="4"/>
+  <circle cx="380" cy="625" r="28" fill="#07111b" stroke="#00d9ff" stroke-width="4"/>
+  <circle cx="520" cy="625" r="28" fill="#07111b" stroke="#00d9ff" stroke-width="4"/>
+  <!-- legs -->
+  <path d="M345 655L430 660L420 805L335 805Z" fill="url(#metal)" stroke="#879ba9" stroke-width="4"/>
+  <path d="M470 660L555 655L585 805L500 805Z" fill="url(#metal)" stroke="#879ba9" stroke-width="4"/>
+  <path d="M330 800L425 800L450 845L315 845Z" fill="#101b26" stroke="#8ea3b1" stroke-width="4"/>
+  <path d="M500 800L590 800L630 840L495 840Z" fill="#101b26" stroke="#8ea3b1" stroke-width="4"/>
+</g>
+<!-- ecosystem labels -->
+<g font-family="Inter,Arial,sans-serif">
+  <g transform="translate(1110 70)">
+    <rect width="230" height="62" rx="31" fill="#081827" stroke="#8b7cff" stroke-width="2"/>
+    <circle cx="32" cy="31" r="9" fill="#8b7cff"/><text x="55" y="27" fill="#fff" font-size="20" font-weight="700">MODELS</text><text x="55" y="47" fill="#91a9b9" font-size="12">foundation intelligence</text>
+  </g>
+  <g transform="translate(1280 590)">
+    <rect width="250" height="62" rx="31" fill="#081827" stroke="#14dfb2" stroke-width="2"/>
+    <circle cx="32" cy="31" r="9" fill="#14dfb2"/><text x="55" y="27" fill="#fff" font-size="20" font-weight="700">CONTROL</text><text x="55" y="47" fill="#91a9b9" font-size="12">actions in the physical world</text>
+  </g>
+  <g transform="translate(950 680)">
+    <rect width="240" height="62" rx="31" fill="#081827" stroke="#1bd4ff" stroke-width="2"/>
+    <circle cx="32" cy="31" r="9" fill="#1bd4ff"/><text x="55" y="27" fill="#fff" font-size="20" font-weight="700">PERCEPTION</text><text x="55" y="47" fill="#91a9b9" font-size="12">vision · language · sensing</text>
+  </g>
+</g>
+<!-- connecting lines -->
+<g stroke="url(#cyan)" stroke-width="2" opacity=".6"><path d="M930 430L790 430"/><path d="M1180 132L1160 185"/><path d="M1280 620L1270 560"/><path d="M1070 680L1060 600"/></g>
+<g fill="#19d9ff" filter="url(#glow)"><circle cx="930" cy="430" r="5"/><circle cx="790" cy="430" r="5"/><circle cx="1160" cy="185" r="5"/></g>
+</svg>
