@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+<title id="title">Robot Embodiment — embodied AI ecosystem</title><desc id="desc">A futuristic humanoid robot connected to perception, models, control and physical systems.</desc>
+<defs>
+ <radialGradient id="bg"><stop stop-color="#14283d"/><stop offset=".55" stop-color="#07111d"/><stop offset="1" stop-color="#04070c"/></radialGradient>
+ <linearGradient id="cyan" x1="0" x2="1"><stop stop-color="#55e8ff"/><stop offset="1" stop-color="#2584ff"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#173049" stroke-opacity=".32"/></pattern>
+</defs>
+<rect width="1400" height="760" fill="url(#bg)"/><rect width="1400" height="760" fill="url(#grid)"/>
+<ellipse cx="900" cy="390" rx="330" ry="250" fill="none" stroke="#1c5579" stroke-opacity=".45"/><ellipse cx="900" cy="390" rx="235" ry="175" fill="none" stroke="#246a92" stroke-opacity=".35"/>
+<g stroke="url(#cyan)" stroke-width="2" opacity=".72"><path d="M900 390L1160 180"/><path d="M900 390L1190 565"/><path d="M900 390L620 170"/><path d="M900 390L590 585"/></g>
+<g fill="#8deaff" filter="url(#glow)"><circle cx="1160" cy="180" r="5"/><circle cx="1190" cy="565" r="5"/><circle cx="620" cy="170" r="5"/><circle cx="590" cy="585" r="5"/></g>
+<!-- stylized humanoid -->
+<g transform="translate(820 105)" stroke="#b9d9ef" stroke-width="5" stroke-linejoin="round">
+ <path d="M80 65C80 20 115 0 160 0s80 20 80 65v55c0 38-33 67-80 67s-80-29-80-67Z" fill="#dce7ee"/>
+ <path d="M113 69c22-32 63-45 100-27v42c-30 22-67 24-100 4Z" fill="#07111b" stroke="#4b7694"/>
+ <circle cx="145" cy="72" r="15" fill="#20cfff" stroke="#7befff" filter="url(#glow)"/>
+ <path d="M95 190h130l60 150-42 210H72L30 340Z" fill="#cbd8df"/>
+ <path d="M105 215l55 42 55-42v120l-55 45-55-45Z" fill="#07111b" stroke="#4c7590"/>
+ <path d="M72 250 0 390l55 30 73-106M225 250l72 140-55 30-73-106" fill="#b7c8d1"/>
+ <path d="M108 550 70 710h70l52-160M200 550l38 160h-70l-52-160" fill="#aabdc8"/>
+ <path d="M40 390h45M260 390h-45" stroke="#31dfff"/>
+</g>
+<g font-family="system-ui,Segoe UI,Arial" fill="#e9f6ff">
+ <text x="72" y="120" font-size="18" letter-spacing="5" fill="#7ddfff">THE EMBODIED AI ECOSYSTEM</text>
+ <text x="72" y="190" font-size="66" font-weight="800">Where AI meets</text><text x="72" y="260" font-size="66" font-weight="800" fill="#27cfff">the physical world.</text>
+ <text x="72" y="315" font-size="20" fill="#9eb3c6">Robots · Models · Companies · Research</text>
+ <g font-size="17" font-weight="700">
+  <rect x="1080" y="125" width="235" height="76" rx="18" fill="#09131e" stroke="#43cfff"/><text x="1110" y="158">MODELS</text><text x="1110" y="182" font-size="13" fill="#8ea6b9">foundation intelligence</text>
+  <rect x="1110" y="530" width="235" height="76" rx="18" fill="#09131e" stroke="#a779ff"/><text x="1140" y="563">CONTROL</text><text x="1140" y="587" font-size="13" fill="#8ea6b9">action in the world</text>
+  <rect x="470" y="120" width="235" height="76" rx="18" fill="#09131e" stroke="#43cfff"/><text x="500" y="153">PERCEPTION</text><text x="500" y="177" font-size="13" fill="#8ea6b9">sensing &amp; understanding</text>
+  <rect x="430" y="535" width="235" height="76" rx="18" fill="#09131e" stroke="#45e0bd"/><text x="460" y="568">ROBOTS</text><text x="460" y="592" font-size="13" fill="#8ea6b9">physical embodiment</text>
+ </g>
+</g>
+</svg>
