@@ -120,11 +120,12 @@
     const path=location.pathname.replace(/\\/$/,'').split('/').filter(Boolean);
     const items=[{name:'Robot Embodiment',item:'https://robotembodiment.com/'}];
     if(path.length){
-      let acc='https://robotembodiment.com/';
+      const hubs={articles:'articles.html',research:'research.html',models:'models.html',robots:'robots.html',companies:'companies.html',signals:'signals.html',concepts:'concepts.html'};
       path.forEach((part,i)=>{
-        acc+=part+(i===path.length-1?'':'/');
+        const isLast=i===path.length-1;
+        const item=isLast ? 'https://robotembodiment.com/'+path.join('/') : 'https://robotembodiment.com/'+(hubs[part]||part+'/');
         const label=document.title.split('|')[0].trim()||part.replace(/[-_]/g,' ');
-        items.push({name:i===path.length-1?label:part.replace(/[-_]/g,' '),item:acc});
+        items.push({name:isLast?label:part.replace(/[-_]/g,' '),item});
       });
     }
     const s=document.createElement('script');
