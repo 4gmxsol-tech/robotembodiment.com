@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://robotembodiment.com/sitemap.xml
+Sitemap: https://robotembodiment.com/sitemap-content.xml
