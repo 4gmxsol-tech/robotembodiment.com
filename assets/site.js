@@ -56,11 +56,11 @@
     .re-palette button span{display:block;width:20px;height:20px;border-radius:50%;margin:0 auto 5px;background:var(--swatch)}
     .re-modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
     .re-contact{margin-top:35px;padding:22px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,var(--panel2),var(--panel))}
-    .re-contact-grid{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.re-contact a{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+    .re-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.re-contact a{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);text-align:center;overflow-wrap:anywhere}
     .re-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);z-index:20000}
     .re-top{position:fixed;left:18px;bottom:18px;z-index:10000;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);opacity:0;pointer-events:none;transition:.2s}.re-top.show{opacity:1;pointer-events:auto}
     [data-motion="off"] *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
-    @media(max-width:640px){.re-tools{right:12px;bottom:12px}.re-top{left:12px;bottom:12px}}
+    @media(max-width:640px){.re-tools{right:12px;bottom:12px}.re-top{left:12px;bottom:12px}.re-contact-grid{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
 
