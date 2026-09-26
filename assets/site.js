@@ -115,5 +115,23 @@
     c.innerHTML='<div class="ey">Contact & acquisition</div><h3>Interested in Robot Embodiment?</h3><p class="muted">For acquisition, partnerships, licensing or project inquiries, contact us directly.</p><div class="re-contact-grid"><a href="mailto:Domainzax@gmail.com">✉ Domainzax@gmail.com</a><a href="https://wa.me/573196552559" target="_blank" rel="noopener">◉ WhatsApp · +57 319 655 2559</a></div>';
     footer.parentNode.insertBefore(c,footer);
   }
+  // SEO: add a lightweight breadcrumb graph for pages that do not already provide one.
+  if(!document.querySelector('script[data-re-breadcrumb]')){
+    const path=location.pathname.replace(/\\/$/,'').split('/').filter(Boolean);
+    const items=[{name:'Robot Embodiment',item:'https://robotembodiment.com/'}];
+    if(path.length){
+      let acc='https://robotembodiment.com/';
+      path.forEach((part,i)=>{
+        acc+=part+(i===path.length-1?'':'/');
+        const label=document.title.split('|')[0].trim()||part.replace(/[-_]/g,' ');
+        items.push({name:i===path.length-1?label:part.replace(/[-_]/g,' '),item:acc});
+      });
+    }
+    const s=document.createElement('script');
+    s.type='application/ld+json';s.dataset.reBreadcrumb='true';
+    s.textContent=JSON.stringify({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:items.map((x,i)=>({'@type':'ListItem',position:i+1,name:x.name,item:x.item}))});
+    document.head.appendChild(s);
+  }
+
   root.dataset.reReady='true';
 })();
