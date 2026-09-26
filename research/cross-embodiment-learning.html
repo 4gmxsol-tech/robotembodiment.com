@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross-Embodiment Robot Learning — Robot Embodiment</title>
+<meta name="description" content="A practical field guide to cross-embodiment robot learning: shared representations, human-to-robot transfer, retargeting, adaptation and foundation models.">
+<link rel="canonical" href="https://robotembodiment.com/research/cross-embodiment-learning.html">
+<link rel="stylesheet" href="../assets/site.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+</head>
+<body>
+<header><nav class="w"><a class="brand" href="../">RobotEmbodiment.com</a><div class="links"><a href="../research.html">Research</a><a href="../models.html">Models</a><a href="../robots.html">Robots</a><a href="../companies.html">Companies</a><a href="../directory.html">Directory</a><a class="nav-accent" href="../for-sale.html">Acquire</a></div></nav></header>
+<main>
+<section class="page-hero section"><div class="w"><div class="ey page-kicker">Research field guide</div><h1>Cross-Embodiment Robot Learning</h1><p class="hero-lead">How robots reuse intelligence across different bodies, control spaces, sensors and physical dynamics.</p><div class="article-meta">Updated September 2026 · Independent research map</div></div></section>
+<section class="section"><div class="w article-grid"><article>
+<h2>Why embodiment is a learning problem</h2>
+<p>A robot policy is never purely abstract. Its actions are constrained by morphology, joint limits, sensors, end-effectors, latency and dynamics. A skill learned on one platform therefore does not automatically execute on another.</p>
+<p>Cross-embodiment learning treats that mismatch as a first-class problem: preserve task-level or semantic knowledge while adapting the physical execution layer to the target body.</p>
+<h2>Four recurring approaches</h2>
+<div class="article-cards">
+<div class="article-card"><b>Shared representations</b><p>Map heterogeneous observations and actions into a common latent or functional space.</p></div>
+<div class="article-card"><b>Retargeting</b><p>Translate human or robot demonstrations into trajectories compatible with a different morphology.</p></div>
+<div class="article-card"><b>Embodiment adaptation</b><p>Reuse a pretrained policy while learning a lightweight target-specific module or dynamics correction.</p></div>
+<div class="article-card"><b>Human-centric pretraining</b><p>Use human interaction traces as a scalable source of physical knowledge before grounding it in robot execution.</p></div>
+</div>
+<h2>Why 2026 is important</h2>
+<p>Recent work spans unified latent spaces for multiple humanoids, human-centric VLA pretraining across many embodiments, action priors for heterogeneous robots, and world models designed as embodiment-agnostic interfaces.</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2601.15419" rel="noopener">Learning a Unified Latent Space for Cross-Embodiment Robot Control</a> — shared representations across diverse humanoid platforms.</li>
+<li><a href="https://arxiv.org/abs/2601.12993" rel="noopener">Being-H0.5</a> — human-centric VLA learning for cross-embodiment generalization.</li>
+<li><a href="https://arxiv.org/abs/2606.26095" rel="noopener">Learning Action Priors for Cross-embodiment Robot Manipulation</a> — explicit action priors for heterogeneous embodiments.</li>
+<li><a href="https://www.hichristensen.com/publication/2026-iros-cross-embodiment/" rel="noopener">Scaling Cross-Embodiment World Models</a> — shared world-model representations for dexterous manipulation.</li>
+</ul>
+<h2>From human video to robot skill</h2>
+<p>One of the most visible branches of the field is human-to-robot transfer. Projects such as <a href="https://ut-austin-rpl.github.io/MimicDroid/" rel="noopener">MimicDroid</a> use human play videos as a source of supervision for humanoid manipulation and explicitly address the embodiment gap.</p>
+<p>The broader opportunity is not tied to a single robot. The same problem appears whenever a system must turn shared physical knowledge into actions executable by a new body.</p>
+</article>
+<aside class="article-aside">
+<div class="aside-card"><div class="ey">Field map</div><a href="../robot-manipulation.html">Robot manipulation</a><a href="../robot-foundation-models.html">Robot foundation models</a><a href="../vision-language-action.html">Vision-language-action</a><a href="../humanoid-robots.html">Humanoid robots</a><a href="../benchmarks.html">Benchmarks</a></div>
+<div class="aside-card"><div class="ey">Explore the ecosystem</div><a href="../companies.html">Companies →</a><a href="../models.html">Models →</a><a href="../robots.html">Robots →</a><a href="../directory.html">Directory →</a></div>
+</aside></div></section>
+<section class="acq"><div class="w"><div class="ey">The category</div><h2>Robot Embodiment</h2><p class="muted">A concise name for the research and product layer connecting intelligence to physical form.</p><a class="btn primary" href="../for-sale.html">Acquisition details →</a></div></section>
+</main>
+<footer class="footer"><div class="w"><a href="../about.html">About</a><a href="../sources.html">Sources</a><a href="../editorial-policy.html">Editorial Policy</a><a href="../privacy.html">Privacy</a><span> · Independent informational resource</span></div></footer>
+</body></html>
