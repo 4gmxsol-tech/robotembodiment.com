@@ -1,1 +1,138 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>What Is Embodied AI? | Robot Embodiment</title><meta name="description" content="Embodied AI explained: how artificial intelligence systems perceive, reason and act through physical or simulated environments."><link rel="canonical" href="https://robotembodiment.com/articles/what-is-embodied-ai.html"><meta property="og:title" content="What Is Embodied AI?"><meta property="og:description" content="Embodied AI explained: how artificial intelligence systems perceive, reason and act through physical or simulated environments."><meta property="og:type" content="article"><meta property="og:url" content="https://robotembodiment.com/articles/what-is-embodied-ai.html"><link rel="stylesheet" href="../assets/site.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What Is Embodied AI?","description":"Embodied AI explained: how artificial intelligence systems perceive, reason and act through physical or simulated environments.","datePublished":"2026-09-26","dateModified":"2026-09-26","author":{"@type":"Organization","name":"Robot Embodiment Editorial"},"publisher":{"@type":"Organization","name":"Robot Embodiment","url":"https://robotembodiment.com/"},"mainEntityOfPage":"https://robotembodiment.com/articles/what-is-embodied-ai.html"}</script></head><body><header><nav class="w"><a class="brand" href="../">RobotEmbodiment.com</a><div class="links"><a href="../research.html">Research</a><a href="../models.html">Models</a><a href="../robots.html">Robots</a><a href="../companies.html">Companies</a><a href="../articles.html">Articles</a></div></nav></header><main class="w page-hero"><div class="ey page-kicker">Robot Embodiment · Guide</div><div class="article-meta"><a href="../articles.html">Articles</a> / What Is Embodied AI?</div><h1>What Is Embodied AI?</h1><p class="muted">Embodied AI explained: how artificial intelligence systems perceive, reason and act through physical or simulated environments.</p><div class="article-meta">Published September 26, 2026 · Robot Embodiment Editorial</div><div class="article-grid"><article><h2>What is embodied AI?</h2><p>Embodied AI refers to intelligent systems whose behavior is grounded in interaction with an environment. In robotics, the environment includes physical objects, surfaces, people and the robot's own body.</p><h2>Why embodiment changes AI</h2><p>A text-only system can produce an answer without moving through the world. A robot must connect perception to action while respecting geometry, uncertainty, contact and dynamics. This makes embodiment a systems problem, not only a model problem.</p><h2>Embodied AI and robotics</h2><p>Modern embodied AI combines perception, learning, planning and control. Vision-language-action models, robot foundation models, simulation and real-world datasets are different approaches to the same broader objective: useful intelligence grounded in action.</p><h2>Explore the field</h2><p>Continue through the <a href="../research.html">research map</a>, <a href="../models.html">robot model directory</a>, <a href="../robots.html">robot platform directory</a> and <a href="../companies.html">robotics company directory</a>.</p></article><aside class="article-aside"><div class="aside-card"><div class="ey">Related</div><a href="../articles.html">All articles</a><a href="what-is-robot-embodiment.html">What is robot embodiment?</a><a href="cross-embodiment-learning.html">Cross-embodiment learning</a></div></aside></div></main><script src="https://robotembodiment.com/assets/site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What Is Embodied AI? Definition &amp; Robotics Examples</title>
+<meta name="description" content="Embodied AI grounds intelligence in a body and environment. Learn its perception-action loop, robot learning, VLA models, simulation and evaluation.">
+<link rel="canonical" href="https://robotembodiment.com/articles/what-is-embodied-ai.html">
+<meta property="og:title" content="What Is Embodied AI? Definition &amp; Robotics Examples">
+<meta property="og:description" content="A research-led guide to embodied AI: perception, decision-making, robot action, VLA models, simulation and real-world evaluation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://robotembodiment.com/articles/what-is-embodied-ai.html">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Embodied AI? Definition and Robotics Examples",
+  "description": "A research-led guide to embodied AI, including the perception-action loop, robot learning, vision-language-action models, simulation and evaluation.",
+  "datePublished": "2026-09-26",
+  "dateModified": "2026-11-09",
+  "author": {"@type": "Organization", "name": "Robot Embodiment Editorial"},
+  "publisher": {"@type": "Organization", "name": "Robot Embodiment", "url": "https://robotembodiment.com/"},
+  "mainEntityOfPage": "https://robotembodiment.com/articles/what-is-embodied-ai.html"
+}
+</script>
+</head>
+<body>
+<header>
+  <nav class="w" aria-label="Primary navigation">
+    <a class="brand" href="../">RobotEmbodiment.com</a>
+    <div class="links">
+      <a href="../research.html">Research</a>
+      <a href="../models.html">Models</a>
+      <a href="../robots.html">Robots</a>
+      <a href="../companies.html">Companies</a>
+      <a href="../articles.html">Articles</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="w page-hero">
+  <div class="ey page-kicker">Robot Embodiment · Foundations</div>
+  <div class="article-meta"><a href="../articles.html">Articles</a> / What Is Embodied AI?</div>
+  <h1>What Is Embodied AI?</h1>
+  <p class="muted">A practical definition of intelligence grounded in a body, sensors, actions and an environment.</p>
+  <div class="article-meta">Published September 26, 2026 · Updated November 9, 2026 · Robot Embodiment Editorial</div>
+  <div class="article-grid">
+    <article>
+      <p><strong>In brief:</strong> Embodied AI is an approach to artificial intelligence in which an agent's capabilities are shaped by sensing, deciding and acting through a body in an environment. In robotics, the body is not just a container for a model: its sensors, actuators, geometry, dynamics and action limits affect what the system can perceive and do. The environment then feeds back into the next decision.</p>
+
+      <h2>What makes AI “embodied”?</h2>
+      <p>A conventional text model can answer a question without changing the physical world. An embodied agent must connect its internal representations to observations and actions. It may need to move a camera to reduce uncertainty, reach around an obstacle, maintain balance while carrying an object, or adjust its grip when contact differs from expectation.</p>
+      <p>The body and environment therefore form part of the computational problem. A robot's reach, degrees of freedom, sensor placement, gripper design, latency and force limits constrain the actions available to it. The same policy can behave differently when those constraints change. This coupling between morphology, perception, action and learning is a central theme in research on embodied intelligence.</p>
+
+      <h2>The perception–decision–action loop</h2>
+      <p>Most robot behavior can be understood as a closed loop rather than a one-way sequence:</p>
+      <ol>
+        <li><strong>Perception:</strong> cameras, depth sensors, force/torque sensors, encoders and inertial measurements provide observations about objects, people, contacts and the robot's own state.</li>
+        <li><strong>State estimation and grounding:</strong> the system combines noisy observations with kinematic and dynamic knowledge to estimate where the robot and relevant objects are, what they are doing, and which actions are feasible.</li>
+        <li><strong>Decision-making:</strong> a task planner or learned policy selects a goal, skill or next action based on the instruction, current state and constraints.</li>
+        <li><strong>Execution and feedback:</strong> motion planners and controllers translate the decision into joint, end-effector or base commands. New sensor data reveals whether the action worked and informs the next cycle.</li>
+      </ol>
+      <p>These stages are not always separate software modules. End-to-end policies may combine perception and action prediction, while hybrid systems use learned models for high-level decisions and conventional controllers for tracking, contact handling or safety constraints. The important property is the feedback loop: actions change the world, and those changes become new observations.</p>
+
+      <h2>Examples of embodied AI in robotics</h2>
+      <ul>
+        <li><strong>Object manipulation:</strong> identify a cup, estimate its pose, choose a grasp, make contact, detect slip and adjust the grip or trajectory.</li>
+        <li><strong>Mobile navigation:</strong> interpret a goal location, map obstacles, select a route, move, and re-plan when people or objects change the scene.</li>
+        <li><strong>Humanoid locomotion:</strong> coordinate foot placement, posture and whole-body motion while responding to contact changes and disturbances.</li>
+        <li><strong>Human–robot interaction:</strong> interpret a spoken or visual request, locate the relevant object, act within reach and safety limits, and verify the result.</li>
+      </ul>
+      <p>These examples require more than visual recognition or language understanding. They require a system to produce actions that remain useful under geometry, contact, timing, uncertainty and physical constraints. See the guides to <a href="robot-manipulation-explained.html">robot manipulation</a> and <a href="humanoid-robot-learning.html">how humanoid robots learn physical skills</a>.</p>
+
+      <h2>Where vision-language-action models fit</h2>
+      <p>Vision-language-action (VLA) models connect visual observations and language instructions to robot actions. They can provide a learned policy for tasks such as “pick up the red object and place it beside the bowl.” A VLA is one model family used in embodied AI; it is not a synonym for the whole field. Embodied systems may also use modular perception, symbolic or language-based planning, motion planning, reinforcement learning, imitation learning and low-level feedback control.</p>
+      <p>Research such as <a href="https://arxiv.org/abs/2307.15818" rel="noopener noreferrer">RT-2</a> explored transferring vision-language knowledge into robotic control. <a href="https://arxiv.org/abs/2406.09246" rel="noopener noreferrer">OpenVLA</a> is an open vision-language-action model trained on diverse robot demonstrations. These systems illustrate how pretrained models can help interpret instructions and generate actions, while also showing why robot data, action representations and evaluation remain essential.</p>
+      <p>For the model-level details, continue to <a href="vision-language-action-models.html">vision-language-action models for robots</a> and <a href="robot-foundation-models.html">robot foundation models</a>.</p>
+
+      <h2>Why robot data and cross-embodiment learning matter</h2>
+      <p>Internet images and text do not, by themselves, tell a robot how much force to apply, how a particular gripper moves, or what happens after contact. Robot learning therefore uses demonstrations, teleoperation, autonomous interaction and simulation to connect observations with actions and outcomes.</p>
+      <p>Multi-robot datasets such as <a href="https://arxiv.org/abs/2310.08864" rel="noopener noreferrer">Open X-Embodiment</a> bring together demonstrations from different robot platforms. This diversity can support broader skill learning, but transferring a policy between bodies is not automatic. Robots may have different joint layouts, cameras, grippers, coordinate frames and action spaces. A reusable representation, adaptation procedure or embodiment-aware controller is often needed.</p>
+      <p>Explore <a href="cross-embodiment-learning.html">cross-embodiment learning</a> and the <a href="../research/cross-embodiment-learning.html">cross-embodiment research map</a> for approaches to this transfer problem.</p>
+
+      <h2>Simulation, sim-to-real transfer and evaluation</h2>
+      <p>Simulation lets researchers test policies across repeatable scenes, object configurations and physical parameters before using hardware. It can make data collection and regression testing cheaper, but a successful simulation run does not prove that a robot will succeed in the real world. Contact models, friction, compliance, sensing, actuator behavior and timing can differ from the simulator.</p>
+      <p>Sim-to-real methods try to reduce this gap through system identification, domain randomization, fine-tuning with real demonstrations and feedback adaptation. Physical validation is still required, especially for tasks involving people, fragile objects, high forces or unstable motion. Read the <a href="sim-to-real-robotics.html">sim-to-real robotics guide</a> for the main transfer challenges.</p>
+      <p>Evaluation should measure more than whether a task succeeded once. Useful measures include task success across repeated trials, recovery from disturbances, robustness to new objects and environments, cross-robot transfer, latency, energy use, contact forces and safety violations. The right metrics depend on the task and robot; a benchmark score is meaningful only when its setup, baselines and failure conditions are documented.</p>
+
+      <h2>Embodied AI vs. physical AI vs. embodied intelligence</h2>
+      <p>The terms overlap, and authors do not always use them identically:</p>
+      <ul>
+        <li><strong>Embodied AI</strong> commonly describes AI agents that perceive and act through a body in an environment, with robotics as a major application area.</li>
+        <li><strong>Physical AI</strong> is often used as a broader engineering or industry term for AI systems that operate in the physical world, including robots and autonomous machines.</li>
+        <li><strong>Embodied intelligence</strong> emphasizes how intelligence emerges from the interaction of morphology, perception, action, learning and the environment. It also has roots in cognitive science and biology.</li>
+      </ul>
+      <p>There is no single boundary that separates all three labels. When evaluating a project, inspect what the system senses, what actions it can take, how its body constrains those actions, and whether it learns from the consequences.</p>
+
+      <h2>Open research challenges</h2>
+      <p>Reliable embodied systems still face partial observability, changing contact conditions, long-horizon task planning, limited real-world data, distribution shift between robots, hardware wear, real-time constraints and safety requirements. A model that works in a curated demonstration may fail when an object is occluded, a surface is slippery, a person enters the workspace or the robot's calibration drifts. Progress depends on combining stronger learned policies with better data, explicit constraints, repeatable benchmarks and careful deployment practice.</p>
+
+      <h2>Research references</h2>
+      <ul>
+        <li>Liu, Guo and Cangelosi, <a href="https://doi.org/10.1145/3717059" rel="noopener noreferrer">“Embodied Intelligence: A Synergy of Morphology, Action, Perception and Learning”</a>, ACM Computing Surveys (2025).</li>
+        <li><a href="https://doi.org/10.1002/smb2.70003" rel="noopener noreferrer">“Embodied AI: A Survey on the Evolution from Perceptive to Behavioral Intelligence”</a> (2025).</li>
+        <li>Kim et al., <a href="https://arxiv.org/abs/2406.09246" rel="noopener noreferrer">“OpenVLA: An Open-Source Vision-Language-Action Model”</a> (2024).</li>
+        <li>Open X-Embodiment Collaboration, <a href="https://arxiv.org/abs/2310.08864" rel="noopener noreferrer">“Open X-Embodiment: Robotic Learning Datasets and RT-X Models”</a> (2023).</li>
+        <li>Brohan et al., <a href="https://arxiv.org/abs/2307.15818" rel="noopener noreferrer">“RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control”</a> (2023).</li>
+      </ul>
+
+      <h2>Explore the field</h2>
+      <p>Continue through the <a href="../research.html">research map</a>, <a href="../models.html">robot model directory</a>, <a href="../robots.html">robot platform directory</a> and <a href="../companies.html">robotics company directory</a>.</p>
+    </article>
+    <aside class="article-aside" aria-label="Related guides">
+      <div class="aside-card">
+        <div class="ey">Related guides</div>
+        <a href="what-is-robot-embodiment.html">What is robot embodiment?</a>
+        <a href="cross-embodiment-learning.html">Cross-embodiment learning</a>
+        <a href="robot-foundation-models.html">Robot foundation models</a>
+        <a href="vision-language-action-models.html">Vision-language-action models</a>
+        <a href="sim-to-real-robotics.html">Sim-to-real robotics</a>
+        <a href="robot-manipulation-explained.html">Robot manipulation</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="w">
+    <a href="../about.html">About</a>
+    <a href="../sources.html">Sources</a>
+    <a href="../editorial-policy.html">Editorial Policy</a>
+    <a href="../privacy.html">Privacy</a>
+  </div>
+</footer>
+<script src="https://robotembodiment.com/assets/site.js"></script>
+</body>
+</html>
