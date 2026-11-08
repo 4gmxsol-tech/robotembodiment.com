@@ -1,20 +1,24 @@
-name: Humanoid control article checks
+name: Priority article content checks
 
 on:
   pull_request:
     paths:
       - "articles/humanoid-robot-control.html"
+      - "articles/what-is-embodied-ai.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
+      - ".github/scripts/test_embodied_ai_article.py"
       - ".github/workflows/humanoid-control-content-check.yml"
   push:
     branches: [main]
     paths:
       - "articles/humanoid-robot-control.html"
+      - "articles/what-is-embodied-ai.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
+      - ".github/scripts/test_embodied_ai_article.py"
       - ".github/workflows/humanoid-control-content-check.yml"
 
 permissions:
@@ -26,5 +30,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Validate article content and SEO consistency
+      - name: Validate humanoid control article content and SEO consistency
         run: python .github/scripts/test_humanoid_control_article.py
+      - name: Validate embodied AI article content, sources and internal links
+        run: python .github/scripts/test_embodied_ai_article.py
