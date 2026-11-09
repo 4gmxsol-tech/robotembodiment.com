@@ -130,3 +130,6 @@ body{animation:re-fade-up .45s ease-out both}
 @media(prefers-reduced-motion:reduce){
   body,.hero .page-kicker,.hero h1,.hero-lead,.hero .btn,.hero .signal-row,.hero-visual,.hero-visual .hero-art,.re-contact{animation:none!important}
 }
+
+/* Legacy acquisition links stay hidden until a sale scope is explicitly authorized. */
+a[href$="for-sale.html"],a[href$="/for-sale.html"],a[href$="buyer-handoff.html"],a[href$="/buyer-handoff.html"]{display:none!important}
