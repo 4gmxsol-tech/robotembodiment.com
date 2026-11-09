@@ -1,1 +1,146 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Robot Manipulation Explained | Robot Embodiment</title><meta name="description" content="Robot manipulation explained: how perception, grasping, planning and control work together to move and interact with objects."><link rel="canonical" href="https://robotembodiment.com/articles/robot-manipulation-explained.html"><meta property="og:title" content="Robot Manipulation Explained"><meta property="og:description" content="Robot manipulation explained: how perception, grasping, planning and control work together to move and interact with objects."><meta property="og:type" content="article"><meta property="og:url" content="https://robotembodiment.com/articles/robot-manipulation-explained.html"><link rel="stylesheet" href="../assets/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Robot Manipulation Explained","description":"Robot manipulation explained: how perception, grasping, planning and control work together to move and interact with objects.","datePublished":"2026-09-26","dateModified":"2026-09-26","author":{"@type":"Organization","name":"Robot Embodiment Editorial"},"publisher":{"@type":"Organization","name":"Robot Embodiment","url":"https://robotembodiment.com/"}}</script></head><body><header><nav class="w"><a class="brand" href="../">RobotEmbodiment.com</a><div class="links"><a href="../research.html">Research</a><a href="../models.html">Models</a><a href="../articles.html">Articles</a></div></nav></header><main class="w page-hero"><div class="ey page-kicker">Robot Embodiment · Guide</div><div class="article-meta"><a href="../articles.html">Articles</a> / Guide</div><h1>Robot Manipulation Explained</h1><p class="muted">Robot manipulation explained: how perception, grasping, planning and control work together to move and interact with objects.</p><div class="article-meta">Published September 26, 2026 · Robot Embodiment Editorial</div><div class="article-grid"><article><h2>What is robot manipulation?</h2><p>Manipulation is the controlled interaction with objects using an end effector, hand or other mechanism. It includes grasping, pushing, placing, opening and tool use.</p><h2>The manipulation pipeline</h2><p>A typical system combines perception, object and state estimation, task planning, motion generation and feedback control. Learning can replace or augment parts of this stack.</p><h2>Why manipulation is an embodiment problem</h2><p>Hands and arms differ in reach, degrees of freedom, contact surfaces and force capabilities. A manipulation policy therefore needs a representation or adaptation layer that respects the target body.</p><h2>Explore the field</h2><p>Continue through the <a href="../research.html">research map</a>, <a href="../models.html">model directory</a>, <a href="../robots.html">robot directory</a> and <a href="../companies.html">company directory</a>.</p></article></div></main><script src="https://robotembodiment.com/assets/site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Robot Manipulation: Grasping, Planning &amp; Control</title>
+<meta name="description" content="Learn how robotic manipulation combines perception, grasp planning, contact sensing, motion control and robot learning to interact with objects.">
+<link rel="canonical" href="https://robotembodiment.com/articles/robot-manipulation-explained.html">
+<meta property="og:title" content="Robot Manipulation: Grasping, Planning &amp; Control">
+<meta property="og:description" content="A practical guide to perception, grasping, contact, planning and closed-loop control for physical interaction.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://robotembodiment.com/articles/robot-manipulation-explained.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Robot Manipulation: Grasping, Planning &amp; Control">
+<meta name="twitter:description" content="Learn how robotic manipulation combines perception, grasp planning, contact sensing, motion control and robot learning.">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Robot Manipulation: Grasping, Planning and Control",
+  "description": "A practical guide to robotic manipulation, including perception, grasp selection, contact sensing, motion planning, feedback control and learning-based methods.",
+  "datePublished": "2026-09-26",
+  "dateModified": "2026-11-09",
+  "author": {"@type": "Organization", "name": "Robot Embodiment Editorial"},
+  "publisher": {"@type": "Organization", "name": "Robot Embodiment", "url": "https://robotembodiment.com/"},
+  "mainEntityOfPage": "https://robotembodiment.com/articles/robot-manipulation-explained.html"
+}
+</script>
+</head>
+<body>
+<header>
+  <nav class="w" aria-label="Primary navigation">
+    <a class="brand" href="../">RobotEmbodiment.com</a>
+    <div class="links">
+      <a href="../research.html">Research</a>
+      <a href="../models.html">Models</a>
+      <a href="../robots.html">Robots</a>
+      <a href="../companies.html">Companies</a>
+      <a href="../articles.html">Articles</a>
+    </div>
+  </nav>
+</header>
+<main id="main" class="w page-hero">
+  <div class="ey page-kicker">Robot Embodiment · Manipulation</div>
+  <div class="article-meta"><a href="../articles.html">Articles</a> / Robot Manipulation</div>
+  <h1>Robot Manipulation Explained</h1>
+  <p class="muted">A practical guide to perception, grasping, contact, planning and closed-loop control for physical interaction.</p>
+  <div class="article-meta">Published September 26, 2026 · Updated November 9, 2026 · Robot Embodiment Editorial</div>
+  <div class="article-grid">
+    <article>
+      <p><strong>In brief:</strong> Robot manipulation is the process of changing an object's position, orientation or physical state through controlled contact. A robot may grasp and place a part, push an object, open a drawer, turn a handle, insert a connector or use a tool. Reliable manipulation combines perception, state estimation, task and motion planning, an appropriate end effector, force-aware control and feedback from the physical interaction.</p>
+
+      <h2>What is robot manipulation?</h2>
+      <p>Manipulation is broader than picking up an object. It includes any purposeful interaction in which a robot applies forces or motion to an object or its environment. Examples include grasping, pushing, sliding, reorienting, fastening, opening, pouring, assembling and bimanual coordination. The task may be geometric, such as moving a block to a target pose, or functional, such as inserting a plug until an electrical connection is made.</p>
+      <p>Unlike free-space movement, manipulation is shaped by contact. Friction, compliance, object mass, geometry, uncertainty and the location of contact points all influence what will happen when the robot acts. A plan that looks valid in a camera image can fail if the object is heavier than expected, the gripper touches an edge, a surface slips or a fixture is slightly misaligned.</p>
+
+      <h2>The manipulation pipeline</h2>
+      <p>A practical system usually coordinates several capabilities. They may be separate modules or learned together in a policy, but the underlying questions remain similar:</p>
+      <ol>
+        <li><strong>Perception:</strong> detect the object, estimate its pose and geometry, identify relevant surfaces and understand the surrounding scene. RGB, depth, stereo and other sensors provide complementary evidence.</li>
+        <li><strong>State estimation:</strong> combine observations with robot kinematics and sensor readings to estimate the robot configuration, object pose, velocity and uncertainty. The estimate should be updated as the scene changes.</li>
+        <li><strong>Task planning:</strong> choose the sequence of subgoals. A pick-and-place task, for example, may require approaching, grasping, lifting, transporting, aligning and releasing.</li>
+        <li><strong>Grasp or contact selection:</strong> choose where and how to make contact, considering reachability, stability, collision risk, object constraints and the available end effector.</li>
+        <li><strong>Motion generation:</strong> calculate a feasible path and trajectory while respecting joint limits, obstacles, velocity and acceleration limits, and the geometry of the workspace.</li>
+        <li><strong>Execution and feedback:</strong> track the motion, monitor contact and task progress, then correct, retry or re-plan when observations differ from expectations.</li>
+      </ol>
+      <p>The loop matters: a robot should not assume that an action succeeded merely because a command was issued. It should observe the result, check whether the intended state was reached and decide what to do next.</p>
+
+      <h2>Grasping and end effectors</h2>
+      <p>The end effector is the part of the robot that makes the task contact. A parallel-jaw gripper is often effective for objects with accessible opposing surfaces. Suction tools can handle suitable flat or non-porous surfaces. Dexterous hands provide more contact options for reorientation and tool use, but add degrees of freedom, calibration demands and control complexity. Bimanual systems can stabilize an object with one arm while the other performs a precise operation.</p>
+      <p>A grasp is not good simply because the fingers can close around an object. The system must consider whether the contact arrangement can resist expected disturbances, whether the object can be lifted without slipping, whether the wrist can reach the required pose and whether the grasp blocks later steps. Grasp planning therefore connects object geometry to force, reachability and task intent.</p>
+      <p>Some tasks do not require a full grasp. Pushing, pivoting, sliding and fixture-assisted manipulation deliberately use environmental contact. In these cases, the planner must reason about contact transitions and the forces that keep the object moving along the intended path.</p>
+
+      <h2>Contact sensing and compliant control</h2>
+      <p>Vision can estimate where an object is, but it may not reveal exactly when contact occurs or how much force is being applied. Joint encoders and motor-current estimates provide proprioceptive information; wrist force/torque sensors measure interaction forces; tactile sensors can provide local information about pressure, contact location or slip. Not every robot has all of these sensors, so a system must be designed around the signals actually available.</p>
+      <p>Rigid position tracking is useful when the environment is predictable. Contact-rich tasks often benefit from compliance: impedance or admittance control can regulate the relationship between motion, force and the environment. This helps a robot respond to small alignment errors rather than pushing harder against an obstruction. Compliance is not a substitute for safety limits; force, speed and workspace constraints still need explicit treatment.</p>
+
+      <h2>Planning and control are different layers</h2>
+      <p>Task planning decides what should happen; motion planning decides how the robot can move to make it happen. Inverse kinematics maps a desired end-effector pose to feasible joint configurations. Collision checking rejects paths that intersect the robot's surroundings. Trajectory generation adds timing and smoothness, while a low-level controller tracks commands and reacts to disturbances.</p>
+      <p>For manipulation, a collision-free path is not always a complete solution. The robot may need to establish contact, maintain a stable grasp, follow a surface, insert a part or release an object without disturbing nearby items. Receding-horizon planning and feedback control can repeatedly update the next action using fresh observations. The appropriate controller depends on the robot, task, sensor latency and physical properties of the interaction.</p>
+
+      <h2>Learning-based manipulation</h2>
+      <p>Learning can improve perception, grasp selection, motion generation or the policy that maps observations to actions. Imitation learning uses demonstrations from teleoperation or a human operator. Reinforcement learning optimizes behavior through trial and error in a defined environment. Sequence models can predict several actions at once, while receding-horizon execution keeps the system responsive to new observations.</p>
+      <p>The <a href="https://arxiv.org/abs/2304.13705" rel="noopener noreferrer">ALOHA and Action Chunking with Transformers (ACT) study</a> demonstrated fine-grained bimanual tasks learned from real demonstrations on a comparatively low-cost platform. <a href="https://arxiv.org/abs/2303.04137" rel="noopener noreferrer">Diffusion Policy</a> models visuomotor behavior as a conditional diffusion process; its paper evaluates the approach across multiple manipulation tasks and benchmarks. These are examples of learning methods, not guarantees that a policy will transfer unchanged to another robot or factory.</p>
+      <p>Learning systems still need dependable state estimates, suitable action spaces, enough representative data and a way to detect failure. A model trained on a fixed camera and one gripper may struggle when the camera moves, the object changes or the target robot has different joint limits.</p>
+
+      <h2>Why diverse robot data matters</h2>
+      <p>Manipulation policies are shaped by the tasks, objects, environments and robot bodies represented in their training data. The <a href="https://arxiv.org/abs/2403.12945" rel="noopener noreferrer">DROID dataset</a> describes 76,000 demonstration trajectories collected across varied scenes and tasks. The <a href="https://arxiv.org/abs/2310.08864" rel="noopener noreferrer">Open X-Embodiment project</a> combines demonstrations from multiple robot platforms and studies cross-robot learning. These efforts illustrate why diversity can matter: a policy exposed to more than one table, object arrangement or robot may learn representations that are less tied to a single setup.</p>
+      <p>Dataset size alone is not enough. Collection protocols, calibration, action definitions, task labels, failure examples and licensing all affect whether data can be reused. Evaluation should document which embodiments and environments were actually tested rather than treating a large training set as proof of generalization.</p>
+
+      <h2>Manipulation is an embodiment problem</h2>
+      <p>A skill is not independent of the body that performs it. Reach, payload, joint range, hand geometry, number of fingers, sensor placement, actuator bandwidth and control frequency all shape the available actions. A grasp pose that is reachable for a six-degree-of-freedom arm may be impossible for a compact humanoid hand. A bimanual strategy may depend on the spacing and coordination of both arms.</p>
+      <p>Moving a policy between robots therefore requires more than copying model weights. The system may need coordinate-frame conversion, action retargeting, kinematic calibration, adaptation data, a new controller or a different grasp representation. This is one reason manipulation connects closely to <a href="what-is-embodied-ai.html">embodied AI</a>, <a href="humanoid-robot-control.html">humanoid robot control</a> and <a href="teleoperation-in-robotics.html">robot teleoperation</a>.</p>
+
+      <h2>How to evaluate a manipulation system</h2>
+      <p>Report performance over repeated trials and state the conditions. Useful measures include task success rate, grasp stability, completion time, recovery after a disturbance, collision or safety events, peak contact force, energy use and the number of operator interventions. For learning systems, also test new objects, positions, lighting conditions and environments. For cross-embodiment claims, report results separately for each robot and describe any adaptation performed.</p>
+      <p>A benchmark is only interpretable when its task definition, object set, reset procedure, sensors, control frequency, allowed retries and failure criteria are clear. A single successful video is a demonstration, not a reliability estimate. Simulation can make tests repeatable, but real hardware validation remains necessary because friction, compliance, sensing and actuator behavior may differ from the model. See the <a href="sim-to-real-robotics.html">sim-to-real robotics guide</a> for the transfer problem.</p>
+
+      <h2>Practical design checklist</h2>
+      <ul>
+        <li>Define the task outcome and the conditions that count as success.</li>
+        <li>Measure object geometry, mass range, friction and relevant tolerances.</li>
+        <li>Choose an end effector and sensors that match the contact requirements.</li>
+        <li>Check reachability, collision constraints and safe force or speed limits.</li>
+        <li>Use feedback to verify grasp, placement and task completion.</li>
+        <li>Test repeated trials, failure recovery and variation in objects and scenes.</li>
+        <li>Document the robot embodiment, software version, data and evaluation setup.</li>
+      </ul>
+
+      <h2>Research references</h2>
+      <ul>
+        <li>Khazatsky et al., <a href="https://arxiv.org/abs/2403.12945" rel="noopener noreferrer">“DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset”</a> (2024).</li>
+        <li>Zhao et al., <a href="https://arxiv.org/abs/2304.13705" rel="noopener noreferrer">“Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware”</a> (2023).</li>
+        <li>Chi et al., <a href="https://arxiv.org/abs/2303.04137" rel="noopener noreferrer">“Diffusion Policy: Visuomotor Policy Learning via Action Diffusion”</a> (2023; revised 2024).</li>
+        <li>Open X-Embodiment Collaboration, <a href="https://arxiv.org/abs/2310.08864" rel="noopener noreferrer">“Open X-Embodiment: Robotic Learning Datasets and RT-X Models”</a> (2023).</li>
+        <li>Fu et al., <a href="https://arxiv.org/abs/2401.02117" rel="noopener noreferrer">“Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation”</a> (2024).</li>
+      </ul>
+
+      <h2>Explore the field</h2>
+      <p>Continue through the <a href="../research.html">research map</a>, <a href="../models.html">robot model directory</a>, <a href="../robots.html">robot platform directory</a>, <a href="../companies.html">robotics company directory</a> and <a href="../robot-manipulation.html">robot manipulation overview</a>.</p>
+    </article>
+    <aside class="article-aside" aria-label="Related guides">
+      <div class="aside-card">
+        <div class="ey">Related guides</div>
+        <a href="what-is-embodied-ai.html">What is embodied AI?</a>
+        <a href="humanoid-robot-control.html">Humanoid robot control</a>
+        <a href="teleoperation-in-robotics.html">Teleoperation in robotics</a>
+        <a href="sim-to-real-robotics.html">Sim-to-real robotics</a>
+        <a href="cross-embodiment-learning.html">Cross-embodiment learning</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<footer class="footer">
+  <div class="w">
+    <a href="../about.html">About</a>
+    <a href="../sources.html">Sources</a>
+    <a href="../editorial-policy.html">Editorial Policy</a>
+    <a href="../privacy.html">Privacy</a>
+  </div>
+</footer>
+<script src="https://robotembodiment.com/assets/site.js"></script>
+</body>
+</html>

@@ -5,10 +5,12 @@ on:
     paths:
       - "articles/humanoid-robot-control.html"
       - "articles/what-is-embodied-ai.html"
+      - "articles/robot-manipulation-explained.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
       - ".github/scripts/test_embodied_ai_article.py"
+      - ".github/scripts/test_robot_manipulation_article.py"
       - ".github/workflows/humanoid-control-content-check.yml"
   push:
     branches: [main]
@@ -34,3 +36,5 @@ jobs:
         run: python .github/scripts/test_humanoid_control_article.py
       - name: Validate embodied AI article content, sources and internal links
         run: python .github/scripts/test_embodied_ai_article.py
+      - name: Validate robot manipulation article content, sources and internal links
+        run: python .github/scripts/test_robot_manipulation_article.py
