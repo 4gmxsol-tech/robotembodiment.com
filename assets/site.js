@@ -43,6 +43,16 @@
   }
   apply();
 
+  // Remove legacy acquisition links while the property is not authorized for sale.
+  document.querySelectorAll('a[href]').forEach(link => {
+    try {
+      const path = new URL(link.getAttribute('href'), window.location.href).pathname.toLowerCase();
+      if (path.endsWith('/for-sale.html') || path.endsWith('/buyer-handoff.html')) {
+        link.remove();
+      }
+    } catch (_) {}
+  });
+
   const style=document.createElement('style');
   style.textContent=`
     .re-tools{position:fixed;right:18px;bottom:18px;z-index:10000;display:flex;gap:8px}

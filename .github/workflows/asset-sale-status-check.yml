@@ -1,0 +1,40 @@
+name: Asset sale authorization guard
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "articles.html"
+      - "for-sale.html"
+      - "buyer-handoff.html"
+      - "sitemap.xml"
+      - "assets/site.js"
+      - "assets/site.css"
+      - ".github/scripts/test_asset_sale_status.py"
+      - ".github/workflows/asset-sale-status-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "articles.html"
+      - "for-sale.html"
+      - "buyer-handoff.html"
+      - "sitemap.xml"
+      - "assets/site.js"
+      - "assets/site.css"
+      - ".github/scripts/test_asset_sale_status.py"
+      - ".github/workflows/asset-sale-status-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  authorization-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify public sale claims match authorization state
+        run: python .github/scripts/test_asset_sale_status.py
