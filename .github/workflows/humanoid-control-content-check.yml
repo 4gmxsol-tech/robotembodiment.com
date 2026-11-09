@@ -20,10 +20,13 @@ on:
     paths:
       - "articles/humanoid-robot-control.html"
       - "articles/what-is-embodied-ai.html"
+      - "articles/robot-embodiment-benchmark.html"
+      - "articles/robot-embodiment-gap.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
       - ".github/scripts/test_embodied_ai_article.py"
+      - ".github/scripts/test_control_topic_cluster.py"
       - ".github/workflows/humanoid-control-content-check.yml"
 
 permissions:
