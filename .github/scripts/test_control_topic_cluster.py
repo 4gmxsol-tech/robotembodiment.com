@@ -2,6 +2,8 @@
 """Guard contextual links into the humanoid robot control topic cluster."""
 from html.parser import HTMLParser
 from pathlib import Path
+import json
+import re
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -42,8 +44,28 @@ expected = {
 for source, phrase in expected.items():
     path = ROOT / "articles" / source
     assert path.is_file(), f"Source article is missing: {source}"
+    html = path.read_text(encoding="utf-8")
     parser = Anchors()
-    parser.feed(path.read_text(encoding="utf-8"))
+    parser.feed(html)
+    schema_blocks = re.findall(
+        r'<script\\s+type=["\\']application/ld\\+json["\\']>(.*?)</script>',
+        html, re.I | re.S
+    )
+    article_schema = next(
+        (json.loads(block) for block in schema_blocks
+         if json.loads(block).get("@type") == "Article"),
+        None
+    )
+    assert article_schema is not None, f"{source} is missing Article JSON-LD"
+    assert article_schema.get("datePublished") == "2026-10-06", (
+        f"{source} original publication date must remain unchanged"
+    )
+    assert article_schema.get("dateModified") == EXPECTED_LASTMOD, (
+        f"{source} Article dateModified must match the content update"
+    )
+    assert "Published October 6, 2026" in html
+    assert "Updated November 9, 2026" in html
+
     matches = [(href, text) for href, text in parser.links if href == TARGET]
     assert len(matches) == 1, f"{source} must contain exactly one contextual control link"
     assert phrase in matches[0][1].lower(), f"{source} link anchor is not descriptive"
