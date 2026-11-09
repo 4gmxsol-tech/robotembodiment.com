@@ -12,6 +12,7 @@ LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/humanoid-robot-control.html"
 EXPECTED_DATE = "2026-11-08"
+EXPECTED_SITEMAP_DATE = "2026-11-09"
 
 class StructureParser(HTMLParser):
     def __init__(self):
@@ -52,6 +53,27 @@ schema = json.loads(schema_match.group(1))
 assert schema.get("@type") == "Article"
 assert schema.get("dateModified") == EXPECTED_DATE
 
+json_ld_documents = []
+for raw in re.findall(r'<script type="application/ld\+json">(.*?)</script>', article, re.S):
+    try:
+        json_ld_documents.append(json.loads(raw))
+    except json.JSONDecodeError as error:
+        raise AssertionError(f"Invalid JSON-LD block: {error}") from error
+breadcrumb = next((doc for doc in json_ld_documents if doc.get("@type") == "BreadcrumbList"), None)
+assert breadcrumb is not None, "BreadcrumbList JSON-LD is missing"
+expected_breadcrumbs = [
+    {"position": 1, "name": "Home", "item": "https://robotembodiment.com/"},
+    {"position": 2, "name": "Articles", "item": "https://robotembodiment.com/articles.html"},
+    {"position": 3, "name": "Humanoid Robot Control", "item": PAGE_URL},
+]
+actual_breadcrumbs = [
+    {"position": item.get("position"), "name": item.get("name"), "item": item.get("item")}
+    for item in breadcrumb.get("itemListElement", [])
+]
+assert actual_breadcrumbs == expected_breadcrumbs, "BreadcrumbList must match the canonical Home > Articles > article hierarchy"
+assert '<nav class="article-meta" aria-label="Breadcrumb">' in article
+assert '<span aria-current="page">Humanoid Robot Control</span>' in article
+
 visible_date = re.search(r"Updated ([A-Z][a-z]+ \d{1,2}, \d{4})", article)
 assert visible_date, "Visible updated date is missing"
 assert visible_date.group(1) == "November 8, 2026"
@@ -67,9 +89,9 @@ ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 entry = next((u for u in root.findall("sm:url", ns)
               if u.findtext("sm:loc", namespaces=ns) == PAGE_URL), None)
 assert entry is not None, "Article is missing from sitemap"
-assert entry.findtext("sm:lastmod", namespaces=ns) == EXPECTED_DATE
+assert entry.findtext("sm:lastmod", namespaces=ns) == EXPECTED_SITEMAP_DATE
 
 assert "articles/humanoid-robot-control.html" in listing
 assert "Humanoid Robot Control &amp; Motion Control: A Practical Guide" in listing
 
-print("PASS: canonical, title/intent, visible/schema date, sitemap, listing card and paragraph structure")
+print("PASS: canonical, title/intent, Article and BreadcrumbList JSON-LD, accessible breadcrumb, visible/schema date, sitemap, listing card and paragraph structure")
