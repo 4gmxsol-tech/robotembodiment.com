@@ -54,7 +54,7 @@ assert schema.get("@type") == "Article"
 assert schema.get("dateModified") == EXPECTED_DATE
 
 json_ld_documents = []
-for raw in re.findall(r'<script type="application/ld\\+json">(.*?)</script>', article, re.S):
+for raw in re.findall(r'<script type="application/ld\+json">(.*?)</script>', article, re.S):
     try:
         json_ld_documents.append(json.loads(raw))
     except json.JSONDecodeError as error:
