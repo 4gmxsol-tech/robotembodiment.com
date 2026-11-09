@@ -48,7 +48,7 @@ for source, phrase in expected.items():
     parser = Anchors()
     parser.feed(html)
     schema_blocks = re.findall(
-        r'<script\\s+type=["\\']application/ld\\+json["\\']>(.*?)</script>',
+        r"<script\s+type=[\"']application/ld\+json[\"']>(.*?)</script>",
         html, re.I | re.S
     )
     article_schema = next(
