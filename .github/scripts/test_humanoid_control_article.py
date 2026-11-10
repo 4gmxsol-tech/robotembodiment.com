@@ -47,6 +47,17 @@ assert "humanoid robot control" in article.lower()
 assert "humanoid motion control" in article.lower()
 assert "joint control" in article.lower()
 
+# Search Console shows "humanoid motion control" as a material query for this page.
+meta_description = re.search(r'<meta name="description" content="([^"]+)">', article)
+og_description = re.search(r'<meta property="og:description" content="([^"]+)">', article)
+assert meta_description, "Meta description is missing"
+assert og_description, "Open Graph description is missing"
+description = meta_description.group(1)
+assert 120 <= len(description) <= 160, f"Meta description must be 120-160 characters (got {len(description)})"
+assert "humanoid robot control" in description.lower()
+assert "humanoid motion control" in description.lower()
+assert og_description.group(1) == description, "Open Graph description must match the search meta description"
+
 schema_match = re.search(r'<script type="application/ld\+json">(.*?)</script>', article, re.S)
 assert schema_match, "Article JSON-LD is missing"
 schema = json.loads(schema_match.group(1))
