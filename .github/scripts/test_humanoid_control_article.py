@@ -93,7 +93,7 @@ assert '<span aria-current="page">Humanoid Robot Control</span>' in article
 
 visible_date = re.search(r"Updated ([A-Z][a-z]+ \d{1,2}, \d{4})", article)
 assert visible_date, "Visible updated date is missing"
-assert visible_date.group(1) == "November 8, 2026"
+assert visible_date.group(1) == "November 10, 2026"
 
 parser = StructureParser()
 parser.feed(article)
