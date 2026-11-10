@@ -37,6 +37,20 @@ class Anchors(HTMLParser):
 
 assert TARGET_PATH.is_file(), "Humanoid robot control target page is missing"
 
+control_html = TARGET_PATH.read_text(encoding="utf-8")
+control_parser = Anchors()
+control_parser.feed(control_html)
+manipulation_links = [
+    (href, text) for href, text in control_parser.links
+    if href == "robot-manipulation-explained.html"
+]
+assert len(manipulation_links) == 1, (
+    "Humanoid Robot Control must link once to the Robot Manipulation guide"
+)
+assert "robot manipulation" in manipulation_links[0][1].lower(), (
+    "The contextual manipulation link must use descriptive anchor text"
+)
+
 expected = {
     "robot-embodiment-benchmark.html": "humanoid robot control",
     "robot-embodiment-gap.html": "humanoid robot control stack",
@@ -80,4 +94,4 @@ for source, phrase in expected.items():
         f"{source} sitemap lastmod must match the content update"
     )
 
-print("PASS: contextual control-cluster links, Article JSON-LD dates, visible dates and sitemap freshness")
+print("PASS: control-to-manipulation contextual link, control-cluster links, Article JSON-LD dates, visible dates and sitemap freshness")
