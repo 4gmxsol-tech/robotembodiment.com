@@ -99,4 +99,13 @@ entries = {
 assert entries.get(PAGE_URL) == "2026-11-10", "Hub sitemap lastmod must match the update date"
 assert ARTICLE_URL in entries, "The linked full guide must remain in the sitemap"
 
-print("PASS: hub title, description, social metadata, canonical, H1, WebPage schema, guide link and sitemap lastmod")
+ARTICLE_INDEX = ROOT / "articles.html"
+index_html = ARTICLE_INDEX.read_text(encoding="utf-8")
+card_start = index_html.index('<div class="ey">Manipulation</div>')
+card_end = index_html.index("</article>", card_start)
+card = index_html[card_start:card_end]
+assert 'href="robot-manipulation.html"' in card, "Articles index must link to the manipulation topic hub"
+assert "Explore manipulation topic hub" in card, "Hub link must have descriptive anchor text"
+assert 'href="articles/robot-manipulation-explained.html"' in card, "Full technical guide link must remain"
+
+print("PASS: hub metadata, article-index discovery link, guide link and sitemap lastmod")
