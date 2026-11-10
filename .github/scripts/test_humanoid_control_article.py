@@ -11,8 +11,8 @@ ARTICLE = ROOT / "articles" / "humanoid-robot-control.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/humanoid-robot-control.html"
-EXPECTED_DATE = "2026-11-08"
-EXPECTED_SITEMAP_DATE = "2026-11-09"
+EXPECTED_DATE = "2026-11-10"
+EXPECTED_SITEMAP_DATE = "2026-11-10"
 
 class StructureParser(HTMLParser):
     def __init__(self):
@@ -46,6 +46,12 @@ assert "Humanoid Robot Control &amp; Motion Control: A Practical Guide" in artic
 assert "humanoid robot control" in article.lower()
 assert "humanoid motion control" in article.lower()
 assert "joint control" in article.lower()
+assert "Humanoid robot control stack at a glance" in article
+for layer in ("Task and behavior planning", "Motion planning", "Whole-body control", "Joint and actuator control"):
+    assert layer in article, f"Control stack layer is missing: {layer}"
+assert "Cross-cutting state estimation and feedback" in article
+assert "What is humanoid robot joint control" in article
+assert "What is humanoid robot posture control?" in article
 
 # Search Console shows "humanoid motion control" as a material query for this page.
 meta_description = re.search(r'<meta name="description" content="([^"]+)">', article)
