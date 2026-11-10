@@ -1,1 +1,109 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Robot manipulation explained: grasping, planning, control, dexterity and physical interaction."><title>Robot Manipulation — Robot Embodiment</title><style>body{margin:0;background:#060a10;color:#f4f7fb;font:16px/1.75 system-ui,Arial}.w{max-width:900px;width:92%;margin:auto}header{padding:22px 0;border-bottom:1px solid #1b2735}nav{display:flex;justify-content:space-between}a{color:#9ec5ff;text-decoration:none}.brand{font-weight:800;color:#fff}.hero{padding:65px 0 35px}.ey{color:#9ec5ff;text-transform:uppercase;letter-spacing:1.4px;font-size:12px}h1{font-size:clamp(40px,7vw,70px);line-height:1.02;letter-spacing:-3px}h2{font-size:28px;margin-top:48px}.card{background:#0b111a;border:1px solid #1b2735;border-radius:14px;padding:24px;margin:16px 0}.muted{color:#98a5b5}</style></head><body><header><nav class="w"><a class="brand" href="index.html">RobotEmbodiment.com</a><a href="robots.html">Robots</a></nav></header><main class="w"><div class="hero"><div class="ey">Guide / Manipulation</div><h1>Robot manipulation.</h1><p class="muted">Manipulation is the problem of making physical contact useful: grasping, moving, placing, opening, assembling and interacting with objects.</p></div><h2>The manipulation loop</h2><div class="card"><h3>1. Perceive</h3><p>Estimate objects, surfaces, pose, contact opportunities and uncertainty.</p></div><div class="card"><h3>2. Plan</h3><p>Select grasps, motions and task sequences while accounting for geometry and constraints.</p></div><div class="card"><h3>3. Control</h3><p>Execute motion and force commands while responding to contact and changes in the environment.</p></div><h2>Dexterity</h2><p>Dexterous manipulation extends this problem to richer contact patterns and more capable hands or end-effectors. It is particularly sensitive to sensing, control bandwidth, data quality and embodiment.</p><h2>Why it is difficult</h2><p>The physical world is uncertain. Objects deform, friction varies, perception is incomplete and small errors can cause failure. Successful systems therefore combine modeling, feedback and learning rather than relying on a single technique.</p><p><a href="research.html">Explore manipulation research →</a></p></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Robotic Manipulation Guide | Robot Embodiment</title>
+  <meta name="description" content="Explore robotic manipulation: grasping, object handling, motion planning, contact-aware control and practical evaluation for physical robot tasks.">
+  <link rel="canonical" href="https://robotembodiment.com/robot-manipulation.html">
+  <meta property="og:title" content="Robotic Manipulation Guide | Robot Embodiment">
+  <meta property="og:description" content="Explore robotic manipulation: grasping, object handling, motion planning, contact-aware control and practical evaluation for physical robot tasks.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://robotembodiment.com/robot-manipulation.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Robotic Manipulation Guide | Robot Embodiment">
+  <meta name="twitter:description" content="Explore robotic manipulation: grasping, object handling, motion planning, contact-aware control and practical evaluation for physical robot tasks.">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Robotic Manipulation Guide",
+    "description": "Explore robotic manipulation: grasping, object handling, motion planning, contact-aware control and practical evaluation for physical robot tasks.",
+    "url": "https://robotembodiment.com/robot-manipulation.html",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Robot Embodiment",
+      "url": "https://robotembodiment.com/"
+    }
+  }
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; background: #060a10; color: #f4f7fb; font: 16px/1.75 system-ui, Arial, sans-serif; }
+    .w { max-width: 900px; width: 92%; margin: auto; }
+    header { padding: 22px 0; border-bottom: 1px solid #1b2735; }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    a { color: #9ec5ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 3px solid #9ec5ff; outline-offset: 3px; border-radius: 3px; }
+    .brand { font-weight: 800; color: #fff; }
+    .hero { padding: 65px 0 35px; }
+    .ey { color: #9ec5ff; text-transform: uppercase; letter-spacing: 1.4px; font-size: 12px; }
+    h1 { font-size: clamp(40px, 7vw, 70px); line-height: 1.02; letter-spacing: -3px; }
+    h2 { font-size: 28px; margin-top: 48px; }
+    .card { background: #0b111a; border: 1px solid #1b2735; border-radius: 14px; padding: 24px; margin: 16px 0; }
+    .muted { color: #98a5b5; }
+    .cta { display: inline-block; margin-top: 8px; padding: 10px 14px; border: 1px solid #34506e; border-radius: 9px; font-weight: 650; }
+    @media (max-width: 640px) {
+      nav { align-items: flex-start; flex-wrap: wrap; }
+      .hero { padding: 42px 0 26px; }
+      h1 { letter-spacing: -1.5px; }
+      .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="w" aria-label="Primary navigation">
+      <a class="brand" href="index.html">RobotEmbodiment.com</a>
+      <a href="robots.html">Robots</a>
+    </nav>
+  </header>
+  <main class="w" id="main">
+    <div class="hero">
+      <div class="ey">Guide / Manipulation</div>
+      <h1>Robotic manipulation</h1>
+      <p class="muted">Robotic manipulation enables robots to grasp, move, place, assemble and interact with objects through perception, planning, contact and feedback.</p>
+      <a class="cta" href="articles/robot-manipulation-explained.html">Read the full robotic manipulation guide →</a>
+    </div>
+
+    <section aria-labelledby="manipulation-loop">
+      <h2 id="manipulation-loop">The manipulation loop</h2>
+      <div class="card">
+        <h3>1. Perceive</h3>
+        <p>Estimate objects, surfaces, pose, contact opportunities and uncertainty using the sensors available on the robot.</p>
+      </div>
+      <div class="card">
+        <h3>2. Plan</h3>
+        <p>Select grasps, motions and task sequences while accounting for geometry, reachability, collision risk and physical constraints.</p>
+      </div>
+      <div class="card">
+        <h3>3. Control</h3>
+        <p>Execute motion and force commands while responding to contact, disturbances and changes in the environment.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact-aware-execution">
+      <h2 id="contact-aware-execution">Contact-aware execution</h2>
+      <p>Manipulation differs from free-space movement because the robot must reason about contact. Friction, compliance, object mass and small alignment errors can change the result of an action. Vision helps estimate object pose, while force, tactile or proprioceptive signals can help detect contact and slipping when those sensors are available.</p>
+      <p>Reliable systems close the loop: they observe whether the grasp, placement or insertion succeeded, then correct or re-plan when the physical result differs from the intended state. Compliance can help with small alignment errors, but it does not replace explicit force, speed and workspace limits.</p>
+    </section>
+
+    <section aria-labelledby="evaluation">
+      <h2 id="evaluation">How to evaluate a manipulation system</h2>
+      <p>Evaluate repeated trials under stated conditions rather than relying on a single successful demonstration. Useful measures include task success rate, completion time, grasp stability, recovery after disturbances, operator interventions and safety events. Report the robot, end effector, sensors, objects, environment and retry rules so results can be interpreted and compared.</p>
+    </section>
+
+    <section aria-labelledby="dexterity">
+      <h2 id="dexterity">Dexterity and embodiment</h2>
+      <p>Dexterous manipulation uses richer contact patterns and more capable hands or end effectors. It is sensitive to sensing, control bandwidth, data quality and the robot's morphology. A skill that works on one arm or hand may require retargeting, calibration or adaptation before it transfers to another embodiment.</p>
+    </section>
+
+    <section aria-labelledby="continue">
+      <h2 id="continue">Continue exploring</h2>
+      <p>For the full treatment of grasp planning, contact sensing, motion generation, learning-based methods and benchmark design, read the <a href="articles/robot-manipulation-explained.html">robotic manipulation technical guide</a>. You can also <a href="research.html">explore manipulation research</a> across the wider robotics field.</p>
+    </section>
+  </main>
+</body>
+</html>
