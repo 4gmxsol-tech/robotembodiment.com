@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Regression checks for the robot manipulation guide."""
 from html.parser import HTMLParser
+from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin
 import json
@@ -73,6 +74,17 @@ assert 30 <= len(title) <= 60, f"SEO title length is {len(title)}"
 description_match = re.search(r'<meta name="description" content="([^"]+)"', article)
 assert description_match, "Meta description missing"
 description = description_match.group(1)
+
+og_title_match = re.search(r'<meta property="og:title" content="([^"]+)"', article)
+twitter_title_match = re.search(r'<meta name="twitter:title" content="([^"]+)"', article)
+og_description_match = re.search(r'<meta property="og:description" content="([^"]+)"', article)
+twitter_description_match = re.search(r'<meta name="twitter:description" content="([^"]+)"', article)
+assert og_title_match and unescape(og_title_match.group(1)) == title, "Open Graph title must match the document title"
+assert twitter_title_match and unescape(twitter_title_match.group(1)) == title, "Twitter title must match the document title"
+assert og_description_match and unescape(og_description_match.group(1)) == description, "Open Graph description must match the meta description"
+assert twitter_description_match and unescape(twitter_description_match.group(1)) == description, "Twitter description must match the meta description"
+assert "robotic manipulation" in title.lower(), "SEO title must include the Search Console phrase 'robotic manipulation'"
+assert "robotic manipulation" in description.lower(), "Meta description must retain the Search Console phrase 'robotic manipulation'"
 assert 120 <= len(description) <= 160, f"Meta description length is {len(description)}"
 
 canonical = re.search(r'<link rel="canonical" href="([^"]+)"', article)
@@ -81,6 +93,7 @@ schema_match = re.search(r'<script type="application/ld\+json">\s*(.*?)\s*</scri
 assert schema_match, "Article JSON-LD missing"
 schema = json.loads(schema_match.group(1))
 assert schema.get("@type") == "Article"
+assert schema.get("headline") == "Robotic Manipulation: Grasping, Planning and Control"
 assert schema.get("datePublished") == "2026-09-26"
 assert schema.get("dateModified") == EXPECTED_DATE
 assert schema.get("mainEntityOfPage") == PAGE_URL
