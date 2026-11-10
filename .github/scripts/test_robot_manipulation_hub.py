@@ -108,4 +108,8 @@ assert 'href="robot-manipulation.html"' in card, "Articles index must link to th
 assert "Explore manipulation topic hub" in card, "Hub link must have descriptive anchor text"
 assert 'href="articles/robot-manipulation-explained.html"' in card, "Full technical guide link must remain"
 
+HOME = ROOT / "index.html"
+home_html = HOME.read_text(encoding="utf-8")
+assert 'href="robot-manipulation.html">Robotic Manipulation Overview</a>' in home_html, "Homepage must expose a direct, descriptive link to the manipulation topic hub"
+
 print("PASS: hub metadata, article-index discovery link, guide link and sitemap lastmod")
