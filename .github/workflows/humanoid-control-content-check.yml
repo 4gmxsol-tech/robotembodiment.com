@@ -6,6 +6,7 @@ on:
       - "articles/humanoid-robot-control.html"
       - "articles/what-is-embodied-ai.html"
       - "articles/robot-manipulation-explained.html"
+      - "robot-manipulation.html"
       - "articles/robot-embodiment-benchmark.html"
       - "articles/robot-embodiment-gap.html"
       - "articles.html"
@@ -13,6 +14,7 @@ on:
       - ".github/scripts/test_humanoid_control_article.py"
       - ".github/scripts/test_embodied_ai_article.py"
       - ".github/scripts/test_robot_manipulation_article.py"
+      - ".github/scripts/test_robot_manipulation_hub.py"
       - ".github/scripts/test_control_topic_cluster.py"
       - ".github/workflows/humanoid-control-content-check.yml"
   push:
@@ -20,12 +22,16 @@ on:
     paths:
       - "articles/humanoid-robot-control.html"
       - "articles/what-is-embodied-ai.html"
+      - "articles/robot-manipulation-explained.html"
+      - "robot-manipulation.html"
       - "articles/robot-embodiment-benchmark.html"
       - "articles/robot-embodiment-gap.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
       - ".github/scripts/test_embodied_ai_article.py"
+      - ".github/scripts/test_robot_manipulation_article.py"
+      - ".github/scripts/test_robot_manipulation_hub.py"
       - ".github/scripts/test_control_topic_cluster.py"
       - ".github/workflows/humanoid-control-content-check.yml"
 
@@ -44,5 +50,7 @@ jobs:
         run: python .github/scripts/test_embodied_ai_article.py
       - name: Validate robot manipulation article content, sources and internal links
         run: python .github/scripts/test_robot_manipulation_article.py
+      - name: Validate robot manipulation hub metadata, canonical and guide link
+        run: python .github/scripts/test_robot_manipulation_hub.py
       - name: Validate robot control topic cluster and publication metadata
         run: python .github/scripts/test_control_topic_cluster.py
