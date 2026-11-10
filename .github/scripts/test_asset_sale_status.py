@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Regression tests for pausing unapproved RobotEmbodiment acquisition messaging."""
+from datetime import date
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
@@ -29,20 +30,21 @@ assert "does not make an offer" in FOR_SALE.lower()
 assert "not a sale, acquisition, or transfer offer" in HANDOFF.lower()
 assert "No transfer of the domain, repository, content, infrastructure, or accounts is authorized" in HANDOFF
 
+ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 urls = {
-    item.findtext("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
-    for item in SITEMAP.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url")
+    item.findtext(f"{ns}loc"): item.findtext(f"{ns}lastmod")
+    for item in SITEMAP.findall(f"{ns}url")
 }
 assert "https://robotembodiment.com/for-sale.html" not in urls
 assert "https://robotembodiment.com/buyer-handoff.html" not in urls
-assert "2026-11-09" in next(
-    item.findtext("{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod")
-    for item in SITEMAP.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url")
-    if item.findtext("{http://www.sitemaps.org/schemas/sitemap/0.9}loc") == "https://robotembodiment.com/"
+homepage_lastmod = urls.get("https://robotembodiment.com/")
+assert homepage_lastmod, "Homepage must retain a sitemap lastmod"
+assert date.fromisoformat(homepage_lastmod) >= date(2026, 11, 9), (
+    "Homepage lastmod must not predate the 9 November removal of unapproved acquisition messaging"
 )
 
 assert "path.endsWith('/for-sale.html')" in SITE_JS
 assert "path.endsWith('/buyer-handoff.html')" in SITE_JS
 assert 'a[href$="for-sale.html"]' in SITE_CSS
 assert 'a[href$="buyer-handoff.html"]' in SITE_CSS
-print("PASS: no public acquisition CTA; status pages noindex; sitemap excludes sale/handoff pages; legacy links are removed/hidden site-wide")
+print("PASS: no public acquisition CTA; status pages noindex; sitemap excludes sale/handoff pages; homepage lastmod does not predate the authorization-state change")

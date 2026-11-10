@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PAGE = ROOT / "robot-manipulation.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/robot-manipulation.html"
+HOME_URL = "https://robotembodiment.com/"
 ARTICLE_URL = "https://robotembodiment.com/articles/robot-manipulation-explained.html"
 EXPECTED_TITLE = "Robotic Manipulation Guide | Robot Embodiment"
 EXPECTED_DESCRIPTION = "Explore robotic manipulation: grasping, object handling, motion planning, contact-aware control and practical evaluation for physical robot tasks."
@@ -97,6 +98,7 @@ entries = {
     for node in root.findall("sm:url", ns)
 }
 assert entries.get(PAGE_URL) == "2026-11-10", "Hub sitemap lastmod must match the update date"
+assert entries.get(HOME_URL) == "2026-11-10", "Homepage sitemap lastmod must reflect the 10 November discovery-link update"
 assert ARTICLE_URL in entries, "The linked full guide must remain in the sitemap"
 
 ARTICLE_INDEX = ROOT / "articles.html"
@@ -112,4 +114,4 @@ HOME = ROOT / "index.html"
 home_html = HOME.read_text(encoding="utf-8")
 assert 'href="robot-manipulation.html">Robotic Manipulation Overview</a>' in home_html, "Homepage must expose a direct, descriptive link to the manipulation topic hub"
 
-print("PASS: hub metadata, article-index discovery link, guide link and sitemap lastmod")
+print("PASS: homepage and hub sitemap lastmod, article-index discovery link, guide link and homepage link")
