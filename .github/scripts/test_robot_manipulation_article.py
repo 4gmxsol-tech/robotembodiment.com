@@ -140,4 +140,8 @@ assert not broken, "Internal links missing from sitemap: " + ", ".join(sorted(se
 assert 'href="articles/robot-manipulation-explained.html"' in listing
 assert "Perception, grasp planning, contact sensing, motion control and robot learning for reliable physical interaction." in listing
 
+aside_match = re.search(r'<aside class="article-aside".*?</aside>', article, re.S)
+assert aside_match, "Related guides sidebar must remain present"
+assert 'href="../robot-manipulation.html">Robotic manipulation overview</a>' in aside_match.group(0), "Related guides sidebar must link prominently to the robotic manipulation topic hub"
+
 print(f"PASS: {word_count} words; title/description; Article schema; visible date; sitemap; {len(parser.hrefs)} links; five research references")
