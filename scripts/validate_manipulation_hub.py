@@ -38,7 +38,7 @@ if "a:focus-visible" not in html:
     errors.append("Breadcrumb links must retain a visible keyboard focus style")
 
 schema_blocks = re.findall(
-    r'<script\\s+type="application/ld\\+json">(.*?)</script>',
+    r'<script\s+type="application/ld\+json">(.*?)</script>',
     html,
     re.I | re.S,
 )
