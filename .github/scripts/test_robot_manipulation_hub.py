@@ -96,8 +96,8 @@ assert [(item.get("name"), item.get("item")) for item in breadcrumb.get("itemLis
     ("Articles", "https://robotembodiment.com/articles.html"),
     ("Robotic manipulation", PAGE_URL),
 ]
-assert "aria-label=\\"Breadcrumb\\"" in html
-assert "aria-current=\\"page\\"" in html
+assert 'aria-label="Breadcrumb"' in html
+assert 'aria-current="page"' in html
 
 root = ET.parse(SITEMAP)
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
