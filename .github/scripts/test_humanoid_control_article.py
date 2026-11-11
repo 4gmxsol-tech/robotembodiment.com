@@ -62,6 +62,7 @@ description = meta_description.group(1)
 assert 120 <= len(description) <= 160, f"Meta description must be 120-160 characters (got {len(description)})"
 assert "humanoid robot control" in description.lower()
 assert "humanoid motion control" in description.lower()
+assert "<title>Humanoid Robot Control &amp; Motion Control: Balance &amp; Joint Guide</title>" in article, "Document title must target both verified control queries"
 assert og_description.group(1) == description, "Open Graph description must match the search meta description"
 
 schema_match = re.search(r'<script type="application/ld\+json">(.*?)</script>', article, re.S)
