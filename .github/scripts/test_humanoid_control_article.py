@@ -11,8 +11,8 @@ ARTICLE = ROOT / "articles" / "humanoid-robot-control.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/humanoid-robot-control.html"
-EXPECTED_DATE = "2026-11-10"
-EXPECTED_SITEMAP_DATE = "2026-11-10"
+EXPECTED_DATE = "2026-11-11"
+EXPECTED_SITEMAP_DATE = "2026-11-11"
 
 class StructureParser(HTMLParser):
     def __init__(self):
@@ -42,7 +42,7 @@ listing = LISTING.read_text(encoding="utf-8")
 sitemap = SITEMAP.read_text(encoding="utf-8")
 
 assert article.count('<link rel="canonical" href="' + PAGE_URL + '">') == 1
-assert "Humanoid Robot Control &amp; Motion Control: A Practical Guide" in article
+assert "Humanoid Robot Control: Motion, Balance &amp; Whole-Body Control" in article
 assert "humanoid robot control" in article.lower()
 assert "humanoid motion control" in article.lower()
 assert "joint control" in article.lower()
@@ -93,7 +93,7 @@ assert '<span aria-current="page">Humanoid Robot Control</span>' in article
 
 visible_date = re.search(r"Updated ([A-Z][a-z]+ \d{1,2}, \d{4})", article)
 assert visible_date, "Visible updated date is missing"
-assert visible_date.group(1) == "November 10, 2026"
+assert visible_date.group(1) == "November 11, 2026"
 
 parser = StructureParser()
 parser.feed(article)
@@ -109,6 +109,6 @@ assert entry is not None, "Article is missing from sitemap"
 assert entry.findtext("sm:lastmod", namespaces=ns) == EXPECTED_SITEMAP_DATE
 
 assert "articles/humanoid-robot-control.html" in listing
-assert "Humanoid Robot Control &amp; Motion Control: A Practical Guide" in listing
+assert "Humanoid Robot Control: Motion, Balance &amp; Whole-Body Control" in listing
 
 print("PASS: canonical, title/intent, Article and BreadcrumbList JSON-LD, accessible breadcrumb, visible/schema date, sitemap, listing card and paragraph structure")
