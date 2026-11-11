@@ -37,31 +37,32 @@ if not re.search(r'\.breadcrumbs\s*\{[^}]*flex-wrap:\s*wrap', html, re.I | re.S)
 if "a:focus-visible" not in html:
     errors.append("Breadcrumb links must retain a visible keyboard focus style")
 
-breadcrumb_data = []
-for block in re.findall(
-    r'<script\s+type="application/ld\+json">(.*?)</script>',
+schema_blocks = re.findall(
+    r'<script\\s+type="application/ld\\+json">(.*?)</script>',
     html,
     re.I | re.S,
-):
+)
+webpage_schemas = []
+for block in schema_blocks:
     try:
         data = json.loads(block)
     except json.JSONDecodeError:
         continue
-    if data.get("@type") == "BreadcrumbList":
-        breadcrumb_data.append(data)
+    if data.get("@type") == "WebPage":
+        webpage_schemas.append(data)
 
-if len(breadcrumb_data) != 1:
-    errors.append("Exactly one BreadcrumbList JSON-LD block is required")
+if len(webpage_schemas) != 1:
+    errors.append("Exactly one WebPage JSON-LD block is required")
 else:
-    items = breadcrumb_data[0].get("itemListElement", [])
+    items = webpage_schemas[0].get("breadcrumb", {}).get("itemListElement", [])
     expected = [
         ("Home", "https://robotembodiment.com/"),
         ("Articles", "https://robotembodiment.com/articles.html"),
         ("Robotic manipulation", URL),
     ]
     actual = [(item.get("name"), item.get("item")) for item in items]
-    if actual != expected:
-        errors.append("BreadcrumbList names and URLs must match the visible path")
+    if webpage_schemas[0].get("breadcrumb", {}).get("@type") != "BreadcrumbList" or actual != expected:
+        errors.append("WebPage breadcrumb schema must match the visible path")
 
 for path in ("index.html", "articles.html"):
     page = (ROOT / path).read_text(encoding="utf-8")
