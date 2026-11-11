@@ -38,7 +38,7 @@ if "a:focus-visible" not in html:
     errors.append("Breadcrumb links must retain a visible keyboard focus style")
 
 task_section = re.search(
-    r'<section\\b(?=[^>]*aria-labelledby="task-patterns")[^>]*>(.*?)</section>',
+    r'<section\b(?=[^>]*aria-labelledby="task-patterns")[^>]*>(.*?)</section>',
     html,
     re.I | re.S,
 )
@@ -46,7 +46,7 @@ if not task_section:
     errors.append("A labelled manipulation task-pattern section is required")
 else:
     task_html = task_section.group(1)
-    task_cards = re.findall(r'<article\\s+class="card task-card">', task_html, re.I)
+    task_cards = re.findall(r'<article\s+class="card task-card">', task_html, re.I)
     if len(task_cards) != 4:
         errors.append(f"Expected four responsive manipulation task cards, found {len(task_cards)}")
     for phrase in (
@@ -62,9 +62,9 @@ else:
         if phrase.casefold() not in task_html.casefold():
             errors.append(f"Manipulation task guidance is missing: {phrase}")
 
-if not re.search(r'\\.task-grid\\s*\\{[^}]*display:\\s*grid', html, re.I | re.S):
+if not re.search(r'\.task-grid\s*\{[^}]*display:\s*grid', html, re.I | re.S):
     errors.append("Manipulation task cards must use a responsive grid")
-if not re.search(r'@media\\s*\\(max-width:\\s*640px\\)[\\s\\S]*?\\.task-grid\\s*\\{[^}]*grid-template-columns:\\s*1fr', html, re.I):
+if not re.search(r'@media\s*\(max-width:\s*640px\)[\s\S]*?\.task-grid\s*\{[^}]*grid-template-columns:\s*1fr', html, re.I):
     errors.append("Manipulation task cards must stack into one column on mobile")
 
 schema_blocks = re.findall(
