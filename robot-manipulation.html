@@ -72,11 +72,17 @@
     .card { background: #0b111a; border: 1px solid #1b2735; border-radius: 14px; padding: 24px; margin: 16px 0; }
     .muted { color: #98a5b5; }
     .cta { display: inline-block; margin-top: 8px; padding: 10px 14px; border: 1px solid #34506e; border-radius: 9px; font-weight: 650; }
+    .task-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 20px 0; }
+    .task-card { margin: 0; min-width: 0; }
+    .task-card h3 { margin: 0 0 10px; }
+    .task-card p { margin: 0 0 10px; }
+    .task-card p:last-child { margin-bottom: 0; }
     @media (max-width: 640px) {
       nav { align-items: flex-start; flex-wrap: wrap; }
       .hero { padding: 42px 0 26px; }
       h1 { letter-spacing: -1.5px; }
       .card { padding: 18px; }
+      .task-grid { grid-template-columns: 1fr; gap: 12px; }
     }
   </style>
 </head>
@@ -120,6 +126,33 @@
       <h2 id="contact-aware-execution">Contact-aware execution</h2>
       <p>Manipulation differs from free-space movement because the robot must reason about contact. Friction, compliance, object mass and small alignment errors can change the result of an action. Vision helps estimate object pose, while force, tactile or proprioceptive signals can help detect contact and slipping when those sensors are available.</p>
       <p>Reliable systems close the loop: they observe whether the grasp, placement or insertion succeeded, then correct or re-plan when the physical result differs from the intended state. Compliance can help with small alignment errors, but it does not replace explicit force, speed and workspace limits.</p>
+    </section>
+
+    <section aria-labelledby="task-patterns">
+      <h2 id="task-patterns">Common robotic manipulation task patterns</h2>
+      <p>The same perception–planning–control loop supports different contact strategies. The task determines which signals matter most and what a meaningful success measure should capture.</p>
+      <div class="task-grid">
+        <article class="card task-card">
+          <h3>Pick and place</h3>
+          <p><strong>Control focus:</strong> select a stable grasp, lift clear of the surface, transport and release at the target pose.</p>
+          <p><strong>Useful measures:</strong> grasp success, object slip and final placement error.</p>
+        </article>
+        <article class="card task-card">
+          <h3>Insertion and assembly</h3>
+          <p><strong>Control focus:</strong> align mating parts, establish contact and complete insertion without forcing a misaligned connection.</p>
+          <p><strong>Useful measures:</strong> insertion success, peak contact force and recovery attempts.</p>
+        </article>
+        <article class="card task-card">
+          <h3>Pushing and sliding</h3>
+          <p><strong>Control focus:</strong> choose a contact point and push direction while accounting for friction and changing object motion.</p>
+          <p><strong>Useful measures:</strong> displacement error, orientation error and contact stability.</p>
+        </article>
+        <article class="card task-card">
+          <h3>Tool use and bimanual work</h3>
+          <p><strong>Control focus:</strong> coordinate the robot, tool and environment, sometimes using one hand to stabilize while the other acts.</p>
+          <p><strong>Useful measures:</strong> task completion, tool pose error and operator intervention.</p>
+        </article>
+      </div>
     </section>
 
     <section aria-labelledby="evaluation">
