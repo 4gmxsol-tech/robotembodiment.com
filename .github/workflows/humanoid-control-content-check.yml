@@ -9,6 +9,7 @@ on:
       - "robot-manipulation.html"
       - "articles/robot-embodiment-benchmark.html"
       - "articles/robot-embodiment-gap.html"
+      - "articles/cross-embodiment-robotics.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
@@ -16,6 +17,7 @@ on:
       - ".github/scripts/test_robot_manipulation_article.py"
       - ".github/scripts/test_robot_manipulation_hub.py"
       - ".github/scripts/test_control_topic_cluster.py"
+      - ".github/scripts/test_cross_embodiment_data_infrastructure.py"
       - ".github/workflows/humanoid-control-content-check.yml"
   push:
     branches: [main]
@@ -26,6 +28,7 @@ on:
       - "robot-manipulation.html"
       - "articles/robot-embodiment-benchmark.html"
       - "articles/robot-embodiment-gap.html"
+      - "articles/cross-embodiment-robotics.html"
       - "articles.html"
       - "sitemap.xml"
       - ".github/scripts/test_humanoid_control_article.py"
@@ -33,6 +36,7 @@ on:
       - ".github/scripts/test_robot_manipulation_article.py"
       - ".github/scripts/test_robot_manipulation_hub.py"
       - ".github/scripts/test_control_topic_cluster.py"
+      - ".github/scripts/test_cross_embodiment_data_infrastructure.py"
       - ".github/workflows/humanoid-control-content-check.yml"
 
 permissions:
@@ -54,3 +58,5 @@ jobs:
         run: python .github/scripts/test_robot_manipulation_hub.py
       - name: Validate robot control topic cluster and publication metadata
         run: python .github/scripts/test_control_topic_cluster.py
+      - name: Validate cross-embodiment data collection guide and sitemap
+        run: python .github/scripts/test_cross_embodiment_data_infrastructure.py
