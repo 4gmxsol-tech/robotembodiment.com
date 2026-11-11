@@ -89,6 +89,15 @@ assert schema.get("@type") == "WebPage"
 assert schema.get("name") == "Robotic Manipulation Guide"
 assert schema.get("url") == PAGE_URL
 assert schema.get("description") == description
+breadcrumb = schema.get("breadcrumb", {})
+assert breadcrumb.get("@type") == "BreadcrumbList"
+assert [(item.get("name"), item.get("item")) for item in breadcrumb.get("itemListElement", [])] == [
+    ("Home", HOME_URL),
+    ("Articles", "https://robotembodiment.com/articles.html"),
+    ("Robotic manipulation", PAGE_URL),
+]
+assert 'aria-label="Breadcrumb"' in html
+assert 'aria-current="page"' in html
 
 root = ET.parse(SITEMAP)
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
@@ -97,7 +106,7 @@ entries = {
     node.findtext("sm:lastmod", default="", namespaces=ns)
     for node in root.findall("sm:url", ns)
 }
-assert entries.get(PAGE_URL) == "2026-11-10", "Hub sitemap lastmod must match the update date"
+assert entries.get(PAGE_URL) == "2026-11-11", "Hub sitemap lastmod must match the update date"
 assert entries.get(HOME_URL) == "2026-11-10", "Homepage sitemap lastmod must reflect the 10 November discovery-link update"
 assert ARTICLE_URL in entries, "The linked full guide must remain in the sitemap"
 
