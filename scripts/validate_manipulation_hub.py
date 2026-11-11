@@ -13,12 +13,12 @@ html = PAGE.read_text(encoding="utf-8")
 sitemap = SITEMAP.read_text(encoding="utf-8")
 errors = []
 
-canonical = re.search(r'<link\\s+rel=["\\']canonical["\\']\\s+href=["\\']([^"\\']+)', html, re.I)
+canonical = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', html, re.I)
 if not canonical or canonical.group(1) != URL:
     errors.append("Manipulation hub canonical must remain self-referencing")
 
 breadcrumb = re.search(
-    r'<nav\\b(?=[^>]*aria-label=["\\']Breadcrumb["\\'])[^>]*>(.*?)</nav>',
+    r'<nav\b(?=[^>]*aria-label="Breadcrumb")[^>]*>(.*?)</nav>',
     html,
     re.I | re.S,
 )
@@ -32,14 +32,14 @@ else:
     if '<span aria-current="page">Robotic manipulation</span>' not in body:
         errors.append("Current breadcrumb item must be exposed as the page")
 
-if not re.search(r'\\.breadcrumbs\\s*\\{[^}]*flex-wrap:\\s*wrap', html, re.I | re.S):
+if not re.search(r'\.breadcrumbs\s*\{[^}]*flex-wrap:\s*wrap', html, re.I | re.S):
     errors.append("Breadcrumbs must wrap on narrow screens")
 if "a:focus-visible" not in html:
     errors.append("Breadcrumb links must retain a visible keyboard focus style")
 
 breadcrumb_data = []
 for block in re.findall(
-    r'<script\\s+type=["\\']application/ld\\+json["\\']>(.*?)</script>',
+    r'<script\s+type="application/ld\+json">(.*?)</script>',
     html,
     re.I | re.S,
 ):
@@ -59,10 +59,7 @@ else:
         ("Articles", "https://robotembodiment.com/articles.html"),
         ("Robotic manipulation", URL),
     ]
-    actual = [
-        (item.get("name"), item.get("item"))
-        for item in items
-    ]
+    actual = [(item.get("name"), item.get("item")) for item in items]
     if actual != expected:
         errors.append("BreadcrumbList names and URLs must match the visible path")
 
@@ -72,7 +69,7 @@ for path in ("index.html", "articles.html"):
         errors.append(f"{path} must keep an internal link to the manipulation hub")
 
 entry = re.search(
-    r'<url>\\s*<loc>' + re.escape(URL) + r'</loc>\\s*<lastmod>2026-11-11</lastmod>\\s*</url>',
+    r'<url>\s*<loc>' + re.escape(URL) + r'</loc>\s*<lastmod>2026-11-11</lastmod>\s*</url>',
     sitemap,
     re.I | re.S,
 )
@@ -80,6 +77,6 @@ if not entry:
     errors.append("Sitemap must keep the hub URL and reflect its 2026-11-11 content update")
 
 if errors:
-    raise SystemExit("\\n".join(f"FAIL: {error}" for error in errors))
+    raise SystemExit("\n".join(f"FAIL: {error}" for error in errors))
 
 print("Manipulation hub breadcrumbs, schema, internal links and sitemap: PASS")
