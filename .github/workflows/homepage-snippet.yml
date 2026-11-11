@@ -20,3 +20,5 @@ jobs:
           python-version: "3.12"
       - name: Validate homepage snippet and sitemap
         run: python scripts/validate_homepage_snippet.py
+      - name: Validate homepage brand integrity
+        run: python scripts/validate_homepage_brand_integrity.py
