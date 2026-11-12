@@ -2,9 +2,9 @@
 <title>Cross-Embodiment Data Collection | Robot Embodiment</title>
 <meta name="description" content="A practical guide to cross-embodiment data collection: robot metadata, sensor streams, action schemas, quality checks and transfer evaluation.">
 <link rel="canonical" href="https://robotembodiment.com/articles/cross-embodiment-robotics.html"><meta property="og:title" content="Cross-Embodiment Data Collection | Robot Embodiment"><meta property="og:description" content="A practical guide to cross-embodiment data collection: robot metadata, sensor streams, action schemas, quality checks and transfer evaluation."><meta property="og:type" content="article"><meta property="og:url" content="https://robotembodiment.com/articles/cross-embodiment-robotics.html"><link rel="stylesheet" href="../assets/site.css"><link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cross-Embodiment Data Collection and Transfer for Robotics","description":"A practical guide to cross-embodiment data collection: robot metadata, sensor streams, action schemas, quality checks and transfer evaluation.","author":{"@type":"Organization","name":"Robot Embodiment Editorial"},"publisher":{"@type":"Organization","name":"Robot Embodiment"},"mainEntityOfPage":"https://robotembodiment.com/articles/cross-embodiment-robotics.html","datePublished":"2026-10-06","dateModified":"2026-11-11"}</script><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Cross-Embodiment Data Collection | Robot Embodiment"><meta name="twitter:description" content="A practical guide to cross-embodiment data collection: robot metadata, sensor streams, action schemas, quality checks and transfer evaluation."></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Cross-Embodiment Data Collection and Transfer for Robotics","description":"A practical guide to cross-embodiment data collection: robot metadata, sensor streams, action schemas, quality checks and transfer evaluation.","author":{"@type":"Organization","name":"Robot Embodiment Editorial"},"publisher":{"@type":"Organization","name":"Robot Embodiment"},"mainEntityOfPage":"https://robotembodiment.com/articles/cross-embodiment-robotics.html","datePublished":"2026-10-06","dateModified":"2026-11-12"}</script><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Cross-Embodiment Data Collection | Robot Embodiment"><meta name="twitter:description" content="A practical guide to cross-embodiment data collection: robot metadata, sensor streams, action schemas, quality checks and transfer evaluation."></head>
 <body><header><nav class="w"><a class="brand" href="../">RobotEmbodiment.com</a><div class="links"><a href="../research.html">Research</a><a href="../models.html">Models</a><a href="../robots.html">Robots</a><a href="../articles.html">Articles</a><a class="nav-accent" href="../for-sale.html">Acquire</a></div></nav></header>
-<main class="w page-hero"><div class="ey page-kicker">Robotics · Transfer learning · Physical AI</div><h1>Cross-Embodiment Robotics</h1><p class="muted">How robots can share intelligence even when their bodies, sensors, action spaces and control systems are different.</p><div class="article-meta">Published October 6, 2026 · Updated November 11, 2026 · Robot Embodiment Editorial</div><div class="article-grid"><article>
+<main class="w page-hero"><div class="ey page-kicker">Robotics · Transfer learning · Physical AI</div><h1>Cross-Embodiment Robotics</h1><p class="muted">How robots can share intelligence even when their bodies, sensors, action spaces and control systems are different.</p><div class="article-meta">Published October 6, 2026 · Updated November 12, 2026 · Robot Embodiment Editorial</div><div class="article-grid"><article>
 <h2>What is cross-embodiment robotics?</h2><p>Cross-embodiment robotics is the study and engineering of methods that allow knowledge, policies, representations or skills learned on one physical platform to transfer to another. The target may be a different robot arm, humanoid, mobile manipulator, dexterous hand or simulated embodiment.</p>
 <p>The central challenge is simple: the task can stay the same while the body changes. A grasp learned by a five-finger hand cannot be copied directly to a parallel gripper. A locomotion policy for one humanoid cannot assume identical joint limits, link lengths or actuator dynamics on another.</p>
 <h2>Why embodiment creates a transfer problem</h2><p>Robot observations and actions are tied to hardware. Cameras have different viewpoints, proprioceptive states have different dimensions, and action interfaces may expose joint positions, torques, Cartesian motion or high-level commands. Geometry and dynamics further change the consequences of an action.</p>
@@ -22,6 +22,58 @@
 <p>Give each dataset release a stable version and record its source robot, collection procedure, operator or contributor permissions, license, consent constraints and any transformations applied. Split training and evaluation data by robot, site, environment or task variant when the goal is to measure transfer. Randomly splitting adjacent frames from the same demonstration can make evaluation look stronger than genuine cross-robot generalization.</p>
 <h3>5. Evaluate transfer, not only data volume</h3>
 <p>Report task success on held-out target embodiments, the amount of target-specific adaptation data, setup time, operator interventions and safety-related failures. Separate zero-shot transfer from fine-tuned or retargeted results. State which sensors, grippers, control modes and environments were tested. More collected trajectories do not by themselves demonstrate that a skill transfers to a different robot.</p>
+<h3>6. Keep a machine-readable dataset manifest</h3>
+<p>Alongside the raw streams, publish a small manifest that identifies the robot, task, clocks, units, outcome and provenance. A downstream team can then check whether a trajectory is interpretable before using it in a training or evaluation split.</p>
+<pre class="code-sample" id="dataset-manifest"><code>{
+  "dataset_id": "pick-place-demo-001",
+  "version": "1.0.0",
+  "robot": {
+    "model": "REPLACE_WITH_ROBOT_MODEL",
+    "degrees_of_freedom": 6,
+    "end_effector": "parallel_gripper",
+    "coordinate_frames": ["base", "tool", "camera"]
+  },
+  "task": {
+    "id": "pick-place",
+    "success_criteria": "object placed inside target zone"
+  },
+  "streams": [
+    {
+      "name": "camera_rgb",
+      "timestamp_clock": "robot_monotonic",
+      "timestamp_unit": "ms",
+      "frame": "camera"
+    },
+    {
+      "name": "joint_state",
+      "timestamp_clock": "robot_monotonic",
+      "timestamp_unit": "ms",
+      "units": "rad"
+    },
+    {
+      "name": "commanded_joint_position",
+      "timestamp_clock": "robot_monotonic",
+      "timestamp_unit": "ms",
+      "units": "rad"
+    },
+    {
+      "name": "executed_joint_position",
+      "timestamp_clock": "robot_monotonic",
+      "timestamp_unit": "ms",
+      "units": "rad"
+    }
+  ],
+  "outcome": {
+    "status": "success",
+    "manual_intervention": false
+  },
+  "provenance": {
+    "source": "REPLACE_WITH_COLLECTION_SOURCE",
+    "license": "REPLACE_WITH_DATASET_LICENSE",
+    "consent_record": "REPLACE_WITH_APPROVED_RECORD"
+  }
+}</code></pre>
+<p>This is an illustrative manifest, not a universal schema. Replace every placeholder with verified project metadata. If streams use different clocks, document the synchronization mapping; keep commanded and executed actions distinct, and record the actual license and consent evidence before sharing a dataset.</p>
 <p>A practical pipeline is therefore: capture → synchronize → validate → normalize shared task semantics → retain embodiment-specific mappings → version the dataset → evaluate on held-out robots. The normalization layer should make compatible fields comparable without erasing differences in morphology, calibration or action meaning.</p>
 <h2>Why it matters for Physical AI</h2><p>General-purpose physical intelligence cannot scale efficiently if every new robot requires a completely separate model and dataset. Cross-embodiment learning offers a path toward reusable robot intelligence: shared knowledge at the model level, with an adaptation layer for each physical platform.</p>
 <p>This is especially relevant to humanoids, where different manufacturers expose substantially different kinematics, hands, sensors and control stacks.</p>
