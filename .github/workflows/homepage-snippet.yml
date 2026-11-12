@@ -24,3 +24,5 @@ jobs:
         run: python scripts/validate_homepage_brand_integrity.py
       - name: Validate manipulation hub breadcrumbs and discovery signals
         run: python scripts/validate_manipulation_hub.py
+      - name: Validate related benchmark product path and disclosure
+        run: python scripts/validate_benchmark_product_path.py
