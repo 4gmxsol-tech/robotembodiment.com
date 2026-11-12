@@ -13,7 +13,7 @@ ARTICLE = ROOT / "articles" / "robot-manipulation-explained.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/robot-manipulation-explained.html"
-EXPECTED_DATE = "2026-11-09"
+EXPECTED_DATE = "2026-11-12"
 
 class ArticleParser(HTMLParser):
     def __init__(self):
@@ -97,13 +97,15 @@ assert schema.get("headline") == "Robotic Manipulation: Grasping, Planning and C
 assert schema.get("datePublished") == "2026-09-26"
 assert schema.get("dateModified") == EXPECTED_DATE
 assert schema.get("mainEntityOfPage") == PAGE_URL
-assert "Updated November 9, 2026" in article
+assert "Updated November 12, 2026" in article
 
 for phrase in (
     "robot manipulation", "grasp planning", "contact sensing",
     "task planning", "motion planning", "feedback", "end effector",
     "impedance", "imitation learning", "cross-embodiment",
-    "evaluation", "sim-to-real"
+    "evaluation", "sim-to-real", "robot motion planning vs robotic manipulation",
+    "free-space motion", "non-prehensile manipulation", "in-hand manipulation",
+    "task-and-motion planning"
 ):
     assert phrase in article.lower(), f"Missing core topic: {phrase}"
 
@@ -116,6 +118,8 @@ for source in (
     "https://arxiv.org/abs/2303.04137",
     "https://arxiv.org/abs/2310.08864",
     "https://arxiv.org/abs/2401.02117",
+    "https://doi.org/10.1146/annurev-control-060117-104848",
+    "https://arxiv.org/abs/2112.01942",
 ):
     assert source in article, f"Missing research source: {source}"
 
@@ -144,4 +148,4 @@ aside_match = re.search(r'<aside class="article-aside".*?</aside>', article, re.
 assert aside_match, "Related guides sidebar must remain present"
 assert 'href="../robot-manipulation.html">Robotic manipulation overview</a>' in aside_match.group(0), "Related guides sidebar must link prominently to the robotic manipulation topic hub"
 
-print(f"PASS: {word_count} words; title/description; Article schema; visible date; sitemap; {len(parser.hrefs)} links; five research references")
+print(f"PASS: {word_count} words; title/description; Article schema; visible date; sitemap; {len(parser.hrefs)} links; seven research references")
