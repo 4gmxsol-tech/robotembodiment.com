@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Robotic Manipulation: Grasping, Planning &amp; Control</title>
-<meta name="description" content="Learn how robotic manipulation combines perception, grasp planning, contact sensing, motion control and robot learning to interact with objects.">
+<meta name="description" content="Understand robotic manipulation, how it differs from robot motion planning, and how grasping, contact sensing and feedback control change object states.">
 <link rel="canonical" href="https://robotembodiment.com/articles/robot-manipulation-explained.html">
 <meta property="og:title" content="Robotic Manipulation: Grasping, Planning &amp; Control">
-<meta property="og:description" content="Learn how robotic manipulation combines perception, grasp planning, contact sensing, motion control and robot learning to interact with objects.">
+<meta property="og:description" content="Understand robotic manipulation, how it differs from robot motion planning, and how grasping, contact sensing and feedback control change object states.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://robotembodiment.com/articles/robot-manipulation-explained.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robotic Manipulation: Grasping, Planning &amp; Control">
-<meta name="twitter:description" content="Learn how robotic manipulation combines perception, grasp planning, contact sensing, motion control and robot learning to interact with objects.">
+<meta name="twitter:description" content="Understand robotic manipulation, how it differs from robot motion planning, and how grasping, contact sensing and feedback control change object states.">
 <link rel="stylesheet" href="../assets/site.css">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
 <script type="application/ld+json">
@@ -20,9 +20,9 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Robotic Manipulation: Grasping, Planning and Control",
-  "description": "A practical guide to robotic manipulation, including perception, grasp selection, contact sensing, motion planning, feedback control and learning-based methods.",
+  "description": "A practical guide to robotic manipulation, how it differs from robot motion planning, and how perception, contact, grasping and feedback control change object states.",
   "datePublished": "2026-09-26",
-  "dateModified": "2026-11-09",
+  "dateModified": "2026-11-12",
   "author": {"@type": "Organization", "name": "Robot Embodiment Editorial"},
   "publisher": {"@type": "Organization", "name": "Robot Embodiment", "url": "https://robotembodiment.com/"},
   "mainEntityOfPage": "https://robotembodiment.com/articles/robot-manipulation-explained.html"
@@ -47,7 +47,7 @@
   <div class="article-meta"><a href="../articles.html">Articles</a> / Robot Manipulation</div>
   <h1>Robot Manipulation Explained</h1>
   <p class="muted">A practical guide to perception, grasping, contact, planning and closed-loop control for physical interaction.</p>
-  <div class="article-meta">Published September 26, 2026 · Updated November 9, 2026 · Robot Embodiment Editorial</div>
+  <div class="article-meta">Published September 26, 2026 · Updated November 12, 2026 · Robot Embodiment Editorial</div>
   <div class="article-grid">
     <article>
       <p><strong>In brief:</strong> Robot manipulation is the process of changing an object's position, orientation or physical state through controlled contact. A robot may grasp and place a part, push an object, open a drawer, turn a handle, insert a connector or use a tool. Reliable manipulation combines perception, state estimation, task and motion planning, an appropriate end effector, force-aware control and feedback from the physical interaction.</p>
@@ -80,6 +80,17 @@
       <h2>Planning and control are different layers</h2>
       <p>Task planning decides what should happen; motion planning decides how the robot can move to make it happen. Inverse kinematics maps a desired end-effector pose to feasible joint configurations. Collision checking rejects paths that intersect the robot's surroundings. Trajectory generation adds timing and smoothness, while a low-level controller tracks commands and reacts to disturbances.</p>
       <p>For manipulation, a collision-free path is not always a complete solution. The robot may need to establish contact, maintain a stable grasp, follow a surface, insert a part or release an object without disturbing nearby items. Receding-horizon planning and feedback control can repeatedly update the next action using fresh observations. The appropriate controller depends on the robot, task, sensor latency and physical properties of the interaction.</p>
+
+
+      <h2>Robot motion planning vs robotic manipulation</h2>
+      <p>Robot motion planning and robotic manipulation are related, but they describe different parts of a task. <strong>Motion planning</strong> finds a feasible path for the robot or its end effector through the workspace while respecting kinematics, joint limits and collision constraints. <strong>Manipulation</strong> deliberately changes an object's pose or physical state through controlled interaction. A manipulation task therefore adds questions about grasp or contact choice, object motion, friction, force limits and whether the intended object-level result was achieved.</p>
+      <ul>
+        <li><strong>Free-space motion:</strong> move an arm to a reachable pose while avoiding obstacles, without intentionally changing an object's state.</li>
+        <li><strong>Prehensile manipulation:</strong> grasp an object and control it through lifting, carrying, reorienting or placing.</li>
+        <li><strong>Non-prehensile manipulation:</strong> push, slide, pivot or guide an object without maintaining a grasp, using contact with the robot or environment.</li>
+        <li><strong>In-hand manipulation:</strong> move or rotate an object relative to the gripper by changing finger contacts or using controlled rolling and slip.</li>
+      </ul>
+      <p>The categories can overlap within one task. A pick-and-place sequence uses free-space motion to approach and transport, but the grasp, lift, placement and release are manipulation phases. Planning systems often combine these decisions as <em>task-and-motion planning</em>: the task layer chooses object-level actions, while the motion layer checks whether the robot can execute them safely and feasibly. For a broad treatment of manipulation, see Mason's <a href="https://doi.org/10.1146/annurev-control-060117-104848" rel="noopener noreferrer">survey of robotic manipulation</a> and the <a href="https://arxiv.org/abs/2112.01942" rel="noopener noreferrer">survey of manipulation in contact</a>.</p>
 
       <h2>Learning-based manipulation</h2>
       <p>Learning can improve perception, grasp selection, motion generation or the policy that maps observations to actions. Imitation learning uses demonstrations from teleoperation or a human operator. Reinforcement learning optimizes behavior through trial and error in a defined environment. Sequence models can predict several actions at once, while receding-horizon execution keeps the system responsive to new observations.</p>
@@ -116,6 +127,8 @@
         <li>Chi et al., <a href="https://arxiv.org/abs/2303.04137" rel="noopener noreferrer">“Diffusion Policy: Visuomotor Policy Learning via Action Diffusion”</a> (2023; revised 2024).</li>
         <li>Open X-Embodiment Collaboration, <a href="https://arxiv.org/abs/2310.08864" rel="noopener noreferrer">“Open X-Embodiment: Robotic Learning Datasets and RT-X Models”</a> (2023).</li>
         <li>Fu et al., <a href="https://arxiv.org/abs/2401.02117" rel="noopener noreferrer">“Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation”</a> (2024).</li>
+        <li>Mason, <a href="https://doi.org/10.1146/annurev-control-060117-104848" rel="noopener noreferrer">“Toward Robotic Manipulation”</a>, Annual Review of Control, Robotics, and Autonomous Systems (2018).</li>
+        <li>Suomalainen et al., <a href="https://arxiv.org/abs/2112.01942" rel="noopener noreferrer">“A Survey of Robot Manipulation in Contact”</a> (2022).</li>
       </ul>
 
       <h2>Explore the field</h2>
