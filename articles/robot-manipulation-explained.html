@@ -108,6 +108,7 @@
       <h2>How to evaluate a manipulation system</h2>
       <p>Report performance over repeated trials and state the conditions. Useful measures include task success rate, grasp stability, completion time, recovery after a disturbance, collision or safety events, peak contact force, energy use and the number of operator interventions. For learning systems, also test new objects, positions, lighting conditions and environments. For cross-embodiment claims, report results separately for each robot and describe any adaptation performed.</p>
       <p>A benchmark is only interpretable when its task definition, object set, reset procedure, sensors, control frequency, allowed retries and failure criteria are clear. A single successful video is a demonstration, not a reliability estimate. Simulation can make tests repeatable, but real hardware validation remains necessary because friction, compliance, sensing and actuator behavior may differ from the model. See the <a href="sim-to-real-robotics.html">sim-to-real robotics guide</a> for the transfer problem.</p>
+      <p><strong>Related platform:</strong> For a repeatable simulation of a common pick-and-place task, explore the <a href="https://humanoidbehavior.com/benchmark.html">HumanoidBehavior Benchmark workspace</a>. It supports measured MuJoCo runs with explicit seeds and policy versions, and stores results for inspection. Simulation results help compare controlled experiments; they do not replace validation on the target robot.</p>
 
       <h2>Practical design checklist</h2>
       <ul>
