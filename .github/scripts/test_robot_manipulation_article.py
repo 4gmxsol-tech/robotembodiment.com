@@ -148,4 +148,21 @@ aside_match = re.search(r'<aside class="article-aside".*?</aside>', article, re.
 assert aside_match, "Related guides sidebar must remain present"
 assert 'href="../robot-manipulation.html">Robotic manipulation overview</a>' in aside_match.group(0), "Related guides sidebar must link prominently to the robotic manipulation topic hub"
 
-print(f"PASS: {word_count} words; title/description; Article schema; visible date; sitemap; {len(parser.hrefs)} links; seven research references")
+# Protect the contextual product handoff and keep its claims aligned with the benchmark page.
+benchmark_cta = re.search(r'<p><strong>Related platform:</strong>.*?</p>', article, re.S)
+assert benchmark_cta, "A contextual HumanoidBehavior benchmark handoff must appear in the evaluation section"
+cta_text = benchmark_cta.group(0)
+assert article.count('href="https://humanoidbehavior.com/benchmark.html"') == 1, "Benchmark CTA must appear exactly once"
+for phrase in (
+    "pick-and-place task",
+    "measured MuJoCo runs",
+    "explicit seeds and policy versions",
+    "do not replace validation on the target robot",
+):
+    assert phrase in cta_text, f"Benchmark CTA must preserve accurate product scope: {phrase}"
+evaluation_heading = article.find("<h2>How to evaluate a manipulation system</h2>")
+cta_position = article.find("<p><strong>Related platform:</strong>")
+checklist_heading = article.find("<h2>Practical design checklist</h2>")
+assert 0 <= evaluation_heading < cta_position < checklist_heading, "Benchmark CTA must follow evaluation guidance and precede the checklist"
+
+print(f"PASS: {word_count} words; title/description; Article schema; visible date; sitemap; {len(parser.hrefs)} links; seven research references; benchmark CTA")
