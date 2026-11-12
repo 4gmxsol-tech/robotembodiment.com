@@ -11,7 +11,7 @@ ARTICLE_PATH = ROOT / "articles" / "cross-embodiment-robotics.html"
 LISTING_PATH = ROOT / "articles.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/cross-embodiment-robotics.html"
-EXPECTED_MODIFIED = "2026-11-11"
+EXPECTED_MODIFIED = "2026-11-12"
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -79,7 +79,7 @@ assert article_schema.get("mainEntityOfPage") == PAGE_URL
 
 visible_text = " ".join(parser.text)
 assert "Published October 6, 2026" in visible_text
-assert "Updated November 11, 2026" in visible_text
+assert "Updated November 12, 2026" in visible_text
 for phrase in (
     "cross-embodiment data collection",
     "embodiment profile",
@@ -90,6 +90,35 @@ for phrase in (
     "operator interventions",
 ):
     assert phrase in visible_text.lower(), f"Missing practical content: {phrase}"
+
+
+manifest_match = re.search(
+    r'<pre class="code-sample" id="dataset-manifest"><code>(.*?)</code></pre>',
+    article,
+    re.S,
+)
+assert manifest_match, "A machine-readable dataset manifest example must be present"
+manifest = json.loads(manifest_match.group(1))
+assert manifest.get("dataset_id") and manifest.get("version"), "Manifest must identify its dataset and version"
+robot = manifest.get("robot", {})
+assert robot.get("model", "").startswith("REPLACE_WITH_"), "Robot model must be an explicit placeholder, not an invented identifier"
+assert robot.get("degrees_of_freedom") and robot.get("end_effector"), "Manifest must describe the embodiment"
+assert {"base", "tool", "camera"}.issubset(set(robot.get("coordinate_frames", []))), "Manifest must name its coordinate frames"
+assert manifest.get("task", {}).get("success_criteria"), "Manifest must state the task success criteria"
+streams = manifest.get("streams", [])
+stream_names = {stream.get("name") for stream in streams}
+assert {"camera_rgb", "joint_state", "commanded_joint_position", "executed_joint_position"}.issubset(stream_names), "Manifest must distinguish observations and commanded/executed actions"
+for stream in streams:
+    assert stream.get("timestamp_clock") and stream.get("timestamp_unit"), "Each stream must declare its clock and timestamp unit"
+for name in ("joint_state", "commanded_joint_position", "executed_joint_position"):
+    stream = next(item for item in streams if item.get("name") == name)
+    assert stream.get("units") == "rad", f"{name} must declare its units"
+provenance = manifest.get("provenance", {})
+assert provenance.get("source", "").startswith("REPLACE_WITH_"), "Collection source must not be fabricated"
+assert provenance.get("license", "").startswith("REPLACE_WITH_"), "Dataset license must not be fabricated"
+assert provenance.get("consent_record", "").startswith("REPLACE_WITH_"), "Consent evidence must not be fabricated"
+assert "illustrative manifest, not a universal schema" in article.lower(), "The example must be clearly labeled as illustrative"
+assert "document the synchronization mapping" in article.lower(), "The article must explain clock synchronization for mixed streams"
 
 for href in (
     "../research/robot-data.html",
