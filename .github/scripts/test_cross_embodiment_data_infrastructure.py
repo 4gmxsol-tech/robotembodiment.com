@@ -11,7 +11,7 @@ ARTICLE_PATH = ROOT / "articles" / "cross-embodiment-robotics.html"
 LISTING_PATH = ROOT / "articles.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/cross-embodiment-robotics.html"
-EXPECTED_MODIFIED = "2026-11-12"
+EXPECTED_MODIFIED = "2026-11-13"
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -53,12 +53,13 @@ parser.feed(article)
 
 assert parser.h1 == ["Cross-Embodiment Robotics"], "The article must keep one clear H1"
 title = "".join(parser.title).strip()
-assert title == "Cross-Embodiment Data Collection | Robot Embodiment"
-assert 30 <= len(title) <= 60, "SEO title length is outside the target range"
+assert title == "Cross-Embodiment Data Collection and Infrastructure | Robot Embodiment"
+assert 30 <= len(title) <= 70, "SEO title length is outside the target range"
 description_match = re.search(r'<meta name="description" content="([^"]+)"', article)
 assert description_match, "Meta description is missing"
 description = description_match.group(1)
 assert 120 <= len(description) <= 160, "Meta description length is outside the target range"
+assert "cross-embodiment robotics data infrastructure" in description.lower(), "Meta description must match the verified data-infrastructure query intent"
 
 for tag, value in (
     ("og:title", title),
@@ -76,11 +77,13 @@ assert article_schema, "Article JSON-LD is missing"
 assert article_schema.get("datePublished") == "2026-10-06", "Original publication date must remain unchanged"
 assert article_schema.get("dateModified") == EXPECTED_MODIFIED, "Article dateModified must match the update"
 assert article_schema.get("mainEntityOfPage") == PAGE_URL
+assert article_schema.get("headline") == "Cross-Embodiment Data Collection and Infrastructure for Robotics"
 
 visible_text = " ".join(parser.text)
 assert "Published October 6, 2026" in visible_text
 assert "Updated November 12, 2026" in visible_text
 for phrase in (
+    "cross-embodiment robotics data infrastructure",
     "cross-embodiment data collection",
     "embodiment profile",
     "synchronize observations and actions",
@@ -127,7 +130,7 @@ for href in (
 ):
     assert href in parser.links, f"Missing contextual internal link: {href}"
 
-assert "cross-embodiment data collection, robot metadata and transfer evaluation" in listing.lower(), "Article listing summary is stale"
+assert "cross-embodiment robotics data infrastructure" in listing.lower(), "Article listing summary is stale"
 assert 'href="articles/cross-embodiment-robotics.html"' in listing, "Article listing link is missing"
 
 root = ET.parse(SITEMAP_PATH).getroot()
