@@ -81,7 +81,7 @@ assert article_schema.get("headline") == "Cross-Embodiment Data Collection and I
 
 visible_text = " ".join(parser.text)
 assert "Published October 6, 2026" in visible_text
-assert "Updated November 12, 2026" in visible_text
+assert "Updated November 13, 2026" in visible_text
 for phrase in (
     "cross-embodiment robotics data infrastructure",
     "cross-embodiment data collection",
