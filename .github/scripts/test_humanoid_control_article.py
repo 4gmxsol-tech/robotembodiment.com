@@ -11,8 +11,8 @@ ARTICLE = ROOT / "articles" / "humanoid-robot-control.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/humanoid-robot-control.html"
-EXPECTED_DATE = "2026-11-11"
-EXPECTED_SITEMAP_DATE = "2026-11-11"
+EXPECTED_DATE = "2026-11-12"
+EXPECTED_SITEMAP_DATE = "2026-11-12"
 
 class StructureParser(HTMLParser):
     def __init__(self):
@@ -52,6 +52,12 @@ for layer in ("Task and behavior planning", "Motion planning", "Whole-body contr
 assert "Cross-cutting state estimation and feedback" in article
 assert "What is humanoid robot joint control" in article
 assert "What is humanoid robot posture control?" in article
+
+# The control evaluation guide should offer one clearly scoped, relevant path to the owned benchmark product.
+benchmark_link = '<a href="https://humanoidbehavior.com/benchmark.html" rel="noopener noreferrer">HumanoidBehavior benchmark workspace</a>'
+assert article.count(benchmark_link) == 1, "The contextual benchmark resource link must appear exactly once"
+assert "measured MuJoCo runs with explicit seeds and policies" in article, "Benchmark description must match the product workflow"
+assert "It complements this guide; it does not replace validation on the target robot." in article, "The resource must not imply simulation replaces hardware validation"
 
 # Search Console shows "humanoid motion control" as a material query for this page.
 meta_description = re.search(r'<meta name="description" content="([^"]+)">', article)
@@ -94,7 +100,7 @@ assert '<span aria-current="page">Humanoid Robot Control</span>' in article
 
 visible_date = re.search(r"Updated ([A-Z][a-z]+ \d{1,2}, \d{4})", article)
 assert visible_date, "Visible updated date is missing"
-assert visible_date.group(1) == "November 11, 2026"
+assert visible_date.group(1) == "November 12, 2026"
 
 parser = StructureParser()
 parser.feed(article)
