@@ -21,7 +21,7 @@ assert "Related platform · same robotics portfolio" in body, "The relationship 
 assert "Turn robot behavior ideas into measured experiments." in body
 assert "controlled MuJoCo evaluations with explicit seeds and policy versions" in body
 assert "Each run is stored with its configuration and results in a workspace." in body
-assert "reproducible MuJoCo benchmarks" not in body.lower()
+assert "reproducible mujoco benchmarks" not in body.lower()
 assert "Each run is stored with its configuration and results in a workspace." in body
 assert "does not replace validation on the target robot" in body
 
