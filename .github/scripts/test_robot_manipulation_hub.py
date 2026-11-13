@@ -107,7 +107,7 @@ entries = {
     for node in root.findall("sm:url", ns)
 }
 assert entries.get(PAGE_URL) == "2026-11-11", "Hub sitemap lastmod must match the update date"
-assert entries.get(HOME_URL) == "2026-11-12", "Homepage sitemap lastmod must reflect the 12 November benchmark referral update"
+assert entries.get(HOME_URL) == "2026-11-13", "Homepage sitemap lastmod must reflect the 13 November benchmark-claim correction"
 assert ARTICLE_URL in entries, "The linked full guide must remain in the sitemap"
 
 ARTICLE_INDEX = ROOT / "articles.html"
