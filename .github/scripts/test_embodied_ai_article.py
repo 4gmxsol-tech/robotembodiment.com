@@ -125,5 +125,13 @@ assert not broken, "Internal links missing from sitemap: " + ", ".join(sorted(se
 
 assert 'href="articles/what-is-embodied-ai.html"' in listing
 assert "Definition, perception-to-action loop, VLA models, datasets, simulation and evaluation." in listing
+comparison_path = ROOT / "articles" / "embodied-intelligence-vs-ai.html"
+comparison_url = "https://robotembodiment.com/articles/embodied-intelligence-vs-ai.html"
+comparison = comparison_path.read_text(encoding="utf-8")
+assert comparison_url in urls, "Embodied intelligence comparison must remain in the sitemap"
+assert '<h1>Embodied Intelligence vs Artificial Intelligence</h1>' in comparison
+assert 'href="articles/embodied-intelligence-vs-ai.html"' in listing, "Article archive must link to the comparison guide"
+assert 'href="embodied-intelligence-vs-ai.html"' in article, "Embodied AI guide must link contextually to the comparison guide"
+assert urls.get("https://robotembodiment.com/articles.html") == "2026-11-14", "Article archive sitemap lastmod must match its new internal link"
 
 print(f"PASS: {word_count} words; title/description; Article schema; visible date; sitemap; {len(parser.hrefs)} links; research references")
