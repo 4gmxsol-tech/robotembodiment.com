@@ -65,11 +65,12 @@ sitemap = SITEMAP.read_text(encoding="utf-8")
 parser = ArticleParser()
 parser.feed(article)
 assert len(parser.h1) == 1, f"Expected one H1, found {len(parser.h1)}"
-assert parser.h1[0].strip() == "Robot Manipulation Explained"
+assert parser.h1[0].strip() == "Robotic Manipulation: Grasping, Planning & Control"
 assert not parser.p_open, "Unclosed paragraph"
 assert not parser.errors, "; ".join(parser.errors)
 
 title = "".join(parser.title).strip()
+assert parser.h1[0].strip() == title, "Visible H1 must match the document title"
 assert 30 <= len(title) <= 60, f"SEO title length is {len(title)}"
 description_match = re.search(r'<meta name="description" content="([^"]+)"', article)
 assert description_match, "Meta description missing"
@@ -93,7 +94,7 @@ schema_match = re.search(r'<script type="application/ld\+json">\s*(.*?)\s*</scri
 assert schema_match, "Article JSON-LD missing"
 schema = json.loads(schema_match.group(1))
 assert schema.get("@type") == "Article"
-assert schema.get("headline") == "Robotic Manipulation: Grasping, Planning and Control"
+assert schema.get("headline") == title, "Article JSON-LD headline must match the document title"
 assert schema.get("datePublished") == "2026-09-26"
 assert schema.get("dateModified") == EXPECTED_DATE
 assert schema.get("mainEntityOfPage") == PAGE_URL
