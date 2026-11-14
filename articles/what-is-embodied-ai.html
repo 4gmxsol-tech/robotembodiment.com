@@ -20,7 +20,7 @@
   "headline": "What Is Embodied AI? Definition and Robotics Examples",
   "description": "A research-led guide to embodied AI, including the perception-action loop, robot learning, vision-language-action models, simulation and evaluation.",
   "datePublished": "2026-09-26",
-  "dateModified": "2026-11-09",
+  "dateModified": "2026-11-14",
   "author": {"@type": "Organization", "name": "Robot Embodiment Editorial"},
   "publisher": {"@type": "Organization", "name": "Robot Embodiment", "url": "https://robotembodiment.com/"},
   "mainEntityOfPage": "https://robotembodiment.com/articles/what-is-embodied-ai.html"
@@ -45,7 +45,7 @@
   <div class="article-meta"><a href="../articles.html">Articles</a> / What Is Embodied AI?</div>
   <h1>What Is Embodied AI?</h1>
   <p class="muted">A practical definition of intelligence grounded in a body, sensors, actions and an environment.</p>
-  <div class="article-meta">Published September 26, 2026 · Updated November 9, 2026 · Robot Embodiment Editorial</div>
+  <div class="article-meta">Published September 26, 2026 · Updated November 14, 2026 · Robot Embodiment Editorial</div>
   <div class="article-grid">
     <article>
       <p><strong>In brief:</strong> Embodied AI is an approach to artificial intelligence in which an agent's capabilities are shaped by sensing, deciding and acting through a body in an environment. In robotics, the body is not just a container for a model: its sensors, actuators, geometry, dynamics and action limits affect what the system can perceive and do. The environment then feeds back into the next decision.</p>
@@ -87,6 +87,13 @@
       <p>Simulation lets researchers test policies across repeatable scenes, object configurations and physical parameters before using hardware. It can make data collection and regression testing cheaper, but a successful simulation run does not prove that a robot will succeed in the real world. Contact models, friction, compliance, sensing, actuator behavior and timing can differ from the simulator.</p>
       <p>Sim-to-real methods try to reduce this gap through system identification, domain randomization, fine-tuning with real demonstrations and feedback adaptation. Physical validation is still required, especially for tasks involving people, fragile objects, high forces or unstable motion. Read the <a href="sim-to-real-robotics.html">sim-to-real robotics guide</a> for the main transfer challenges.</p>
       <p>Evaluation should measure more than whether a task succeeded once. Useful measures include task success across repeated trials, recovery from disturbances, robustness to new objects and environments, cross-robot transfer, latency, energy use, contact forces and safety violations. The right metrics depend on the task and robot; a benchmark score is meaningful only when its setup, baselines and failure conditions are documented.</p>
+
+      <section class="benchmark-referral" aria-labelledby="benchmark-workspace">
+        <h2 id="benchmark-workspace">Explore a controlled robot benchmark</h2>
+        <p>For a hands-on example, the related HumanoidBehavior platform provides measured MuJoCo evaluations with explicit seeds and policy versions. Each run is stored with its configuration and results in a workspace.</p>
+        <p>Simulation results can support controlled comparisons, but they do not replace validation on the target robot.</p>
+        <p><a href="https://humanoidbehavior.com/benchmark.html" rel="noopener noreferrer">Explore the HumanoidBehavior Benchmark workspace →</a></p>
+      </section>
 
       <h2>Embodied AI vs. physical AI vs. embodied intelligence</h2>
       <p>The terms overlap, and authors do not always use them identically:</p>
