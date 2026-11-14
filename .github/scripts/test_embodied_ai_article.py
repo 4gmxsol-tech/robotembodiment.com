@@ -12,7 +12,7 @@ ARTICLE = ROOT / "articles" / "what-is-embodied-ai.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/what-is-embodied-ai.html"
-EXPECTED_DATE = "2026-11-09"
+EXPECTED_DATE = "2026-11-14"
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -85,7 +85,26 @@ assert schema.get("datePublished") == "2026-09-26"
 assert schema.get("dateModified") == EXPECTED_DATE
 assert schema.get("mainEntityOfPage") == PAGE_URL
 
-assert "Updated November 9, 2026" in article
+assert "Updated November 14, 2026" in article
+
+benchmark_url = "https://humanoidbehavior.com/benchmark.html"
+benchmark_section = re.search(
+    r'<section class="benchmark-referral"[^>]*>(.*?)</section>',
+    article,
+    re.S,
+)
+assert benchmark_section, "Embodied AI guide must provide a contextual benchmark referral"
+benchmark_html = benchmark_section.group(1)
+assert benchmark_html.count('href="' + benchmark_url + '"') == 1, "Benchmark referral must contain one clear destination"
+for phrase in (
+    "measured MuJoCo evaluations",
+    "explicit seeds and policy versions",
+    "stored with its configuration and results",
+    "do not replace validation on the target robot",
+):
+    assert phrase.casefold() in benchmark_html.casefold(), f"Benchmark referral must preserve accurate scope: {phrase}"
+assert 'rel="noopener noreferrer"' in benchmark_html, "External benchmark link must use safe relationship attributes"
+assert article.index("<h2>Simulation, sim-to-real transfer and evaluation</h2>") < article.index('<section class="benchmark-referral"') < article.index("<h2>Embodied AI vs. physical AI vs. embodied intelligence</h2>"), "Benchmark referral must follow the evaluation section"
 for phrase in (
     "perception", "decision-making", "execution and feedback",
     "vision-language-action", "cross-embodiment", "sim-to-real",
