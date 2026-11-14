@@ -11,7 +11,7 @@ ARTICLE_PATH = ROOT / "articles" / "cross-embodiment-robotics.html"
 LISTING_PATH = ROOT / "articles.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/cross-embodiment-robotics.html"
-EXPECTED_MODIFIED = "2026-11-13"
+EXPECTED_MODIFIED = "2026-11-14"
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -51,7 +51,7 @@ listing = LISTING_PATH.read_text(encoding="utf-8")
 parser = PageParser()
 parser.feed(article)
 
-assert parser.h1 == ["Cross-Embodiment Robotics"], "The article must keep one clear H1"
+assert parser.h1 == ["Cross-Embodiment Data Collection and Infrastructure for Robotics"], "The article H1 must reflect the data-collection search intent"
 title = "".join(parser.title).strip()
 assert title == "Cross-Embodiment Data Collection and Infrastructure | Robot Embodiment"
 assert 30 <= len(title) <= 70, "SEO title length is outside the target range"
@@ -78,10 +78,11 @@ assert article_schema.get("datePublished") == "2026-10-06", "Original publicatio
 assert article_schema.get("dateModified") == EXPECTED_MODIFIED, "Article dateModified must match the update"
 assert article_schema.get("mainEntityOfPage") == PAGE_URL
 assert article_schema.get("headline") == "Cross-Embodiment Data Collection and Infrastructure for Robotics"
+assert parser.h1 == [article_schema.get("headline")], "Visible H1 must match the Article JSON-LD headline"
 
 visible_text = " ".join(parser.text)
 assert "Published October 6, 2026" in visible_text
-assert "Updated November 13, 2026" in visible_text
+assert "Updated November 14, 2026" in visible_text
 for phrase in (
     "cross-embodiment robotics data infrastructure",
     "cross-embodiment data collection",
@@ -131,6 +132,7 @@ for href in (
     assert href in parser.links, f"Missing contextual internal link: {href}"
 
 assert "cross-embodiment robotics data infrastructure" in listing.lower(), "Article listing summary is stale"
+assert "cross-embodiment data collection and infrastructure for robotics" in listing.lower(), "Article listing heading must reflect the data-collection search intent"
 assert 'href="articles/cross-embodiment-robotics.html"' in listing, "Article listing link is missing"
 
 root = ET.parse(SITEMAP_PATH).getroot()
