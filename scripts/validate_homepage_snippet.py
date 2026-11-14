@@ -21,6 +21,8 @@ class PageParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.title_parts = []
         self.in_title = False
+        self.h1_parts = []
+        self.in_h1 = False
         self.meta = {}
         self.canonical = ""
         self.visible_parts = []
@@ -29,6 +31,8 @@ class PageParser(HTMLParser):
         attrs = dict(attrs)
         if tag == "title":
             self.in_title = True
+        elif tag == "h1":
+            self.in_h1 = True
         elif tag == "meta":
             key = attrs.get("name") or attrs.get("property")
             if key:
@@ -39,11 +43,15 @@ class PageParser(HTMLParser):
     def handle_endtag(self, tag):
         if tag == "title":
             self.in_title = False
+        elif tag == "h1":
+            self.in_h1 = False
 
     def handle_data(self, data):
         self.visible_parts.append(data)
         if self.in_title:
             self.title_parts.append(data)
+        if self.in_h1:
+            self.h1_parts.append(data)
 
 def main():
     html = PAGE.read_text(encoding="utf-8")
@@ -52,6 +60,7 @@ def main():
     title = " ".join("".join(parser.title_parts).split())
     description = " ".join(parser.meta.get("description", "").split())
     visible_text = " ".join(" ".join(parser.visible_parts).split())
+    h1 = " ".join(" ".join(parser.h1_parts).split())
     errors = []
 
     if not 45 <= len(title) <= 65:
@@ -62,6 +71,11 @@ def main():
         errors.append("Open Graph description must match the meta description")
     if parser.canonical != CANONICAL:
         errors.append("canonical URL must remain https://robotembodiment.com/")
+    if "robot embodiment" not in h1.casefold():
+        errors.append("homepage H1 must state the primary topic: robot embodiment")
+    for phrase in ("one intelligence", "many bodies"):
+        if phrase not in h1.casefold():
+            errors.append(f"homepage H1 must preserve the core positioning: {phrase}")
     for term in REQUIRED_TERMS:
         if term not in description.casefold():
             errors.append(f"meta description is missing the query-relevant term: {term}")
@@ -88,7 +102,7 @@ def main():
         print("\n".join(f"FAIL: {error}" for error in errors))
         return 1
     print(
-        "PASS: homepage title, search snippet, Open Graph description, canonical, "
+        "PASS: homepage title, search snippet, H1 topic alignment, Open Graph description, canonical, "
         "visible-content support and sitemap entry are consistent."
     )
     return 0

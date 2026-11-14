@@ -44,7 +44,7 @@ homepage_entry = next(
     None,
 )
 assert homepage_entry is not None, "Homepage must remain in the sitemap."
-assert homepage_entry.findtext("sm:lastmod", namespaces=NS) == "2026-11-13", (
+assert homepage_entry.findtext("sm:lastmod", namespaces=NS) == "2026-11-14", (
     "Homepage sitemap lastmod must match the new homepage content."
 )
 
