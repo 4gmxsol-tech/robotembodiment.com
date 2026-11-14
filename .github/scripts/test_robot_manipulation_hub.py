@@ -83,6 +83,22 @@ assert "robotic manipulation" in visible.casefold()
 assert "contact-aware execution" in visible.casefold()
 assert "repeated trials" in visible.casefold()
 assert ARTICLE_URL.replace("https://robotembodiment.com/", "") in parser.links, "Hub must link to the full technical guide"
+BENCHMARK_URL = "https://humanoidbehavior.com/benchmark.html"
+benchmark_section = __import__("re").search(
+    r'<section\b(?=[^>]*aria-labelledby="benchmark-workspace")[^>]*>(.*?)</section>',
+    html,
+    __import__("re").I | __import__("re").S,
+)
+assert benchmark_section, "Hub must provide a contextual benchmark referral"
+assert benchmark_section.group(1).count('href="' + BENCHMARK_URL + '"') == 2, "Benchmark section must include one inline link and one CTA"
+for phrase in (
+    "measured MuJoCo evaluations",
+    "explicit seeds and policy versions",
+    "stores each run with its configuration and results",
+    "does not replace validation on the target robot",
+):
+    assert phrase.casefold() in benchmark_section.group(1).casefold(), f"Benchmark referral must preserve accurate scope: {phrase}"
+assert 'rel="noopener noreferrer"' in benchmark_section.group(1), "External benchmark links must use safe relationship attributes"
 
 schema = json.loads("".join(parser.jsonld))
 assert schema.get("@type") == "WebPage"
@@ -106,7 +122,7 @@ entries = {
     node.findtext("sm:lastmod", default="", namespaces=ns)
     for node in root.findall("sm:url", ns)
 }
-assert entries.get(PAGE_URL) == "2026-11-11", "Hub sitemap lastmod must match the update date"
+assert entries.get(PAGE_URL) == "2026-11-14", "Hub sitemap lastmod must match the benchmark referral update"
 assert entries.get(HOME_URL) == "2026-11-13", "Homepage sitemap lastmod must reflect the 13 November benchmark-claim correction"
 assert ARTICLE_URL in entries, "The linked full guide must remain in the sitemap"
 

@@ -99,13 +99,36 @@ for path in ("index.html", "articles.html"):
     if 'href="robot-manipulation.html"' not in page:
         errors.append(f"{path} must keep an internal link to the manipulation hub")
 
+benchmark_section = re.search(
+    r'<section\b(?=[^>]*aria-labelledby="benchmark-workspace")[^>]*>(.*?)</section>',
+    html,
+    re.I | re.S,
+)
+if not benchmark_section:
+    errors.append("A contextual benchmark referral section is required")
+else:
+    benchmark_html = benchmark_section.group(1)
+    benchmark_url = "https://humanoidbehavior.com/benchmark.html"
+    if benchmark_html.count('href="' + benchmark_url + '"') != 2:
+        errors.append("The benchmark section must expose one inline link and one clear CTA")
+    for phrase in (
+        "measured MuJoCo evaluations",
+        "explicit seeds and policy versions",
+        "stores each run with its configuration and results",
+        "does not replace validation on the target robot",
+    ):
+        if phrase.casefold() not in benchmark_html.casefold():
+            errors.append(f"Benchmark referral must preserve accurate scope: {phrase}")
+    if 'rel="noopener noreferrer"' not in benchmark_html:
+        errors.append("External benchmark links must use safe relationship attributes")
+
 entry = re.search(
-    r'<url>\s*<loc>' + re.escape(URL) + r'</loc>\s*<lastmod>2026-11-11</lastmod>\s*</url>',
+    r'<url>\s*<loc>' + re.escape(URL) + r'</loc>\s*<lastmod>2026-11-14</lastmod>\s*</url>',
     sitemap,
     re.I | re.S,
 )
 if not entry:
-    errors.append("Sitemap must keep the hub URL and reflect its 2026-11-11 content update")
+    errors.append("Sitemap must keep the hub URL and reflect its 2026-11-14 content update")
 
 if errors:
     raise SystemExit("\n".join(f"FAIL: {error}" for error in errors))
