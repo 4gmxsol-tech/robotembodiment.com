@@ -13,7 +13,7 @@ ARTICLE = ROOT / "articles" / "robot-manipulation-explained.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/robot-manipulation-explained.html"
-EXPECTED_DATE = "2026-11-12"
+EXPECTED_DATE = "2026-11-18"
 
 class ArticleParser(HTMLParser):
     def __init__(self):
@@ -98,7 +98,7 @@ assert schema.get("headline") == title, "Article JSON-LD headline must match the
 assert schema.get("datePublished") == "2026-09-26"
 assert schema.get("dateModified") == EXPECTED_DATE
 assert schema.get("mainEntityOfPage") == PAGE_URL
-assert "Updated November 12, 2026" in article
+assert "Updated November 18, 2026" in article
 
 for phrase in (
     "robot manipulation", "grasp planning", "contact sensing",
