@@ -47,7 +47,8 @@
   <div class="article-meta"><a href="../articles.html">Articles</a> / What Is Embodied AI?</div>
   <h1>What Is Embodied AI?</h1>
   <p class="muted">A practical definition of intelligence grounded in a body, sensors, actions and an environment.</p>
-  <div class="article-meta">Published September 26, 2026 · Updated November 18, 2026 · Robot Embodiment Editorial</div>
+  <div class="article-meta">Published September 26, 2026 · Updated November 18, 2026 · <a href="../about.html">Robot Embodiment Editorial</a></div>
+  <div class="article-meta">Written and reviewed by the Robot Embodiment Editorial team. Claims are linked to primary research and official sources where practical — see our <a href="../editorial-policy.html">editorial policy</a>.</div>
   <div class="article-grid">
     <article>
       <p><strong>In brief:</strong> Embodied AI is an approach to artificial intelligence in which an agent's capabilities are shaped by sensing, deciding and acting through a body in an environment. In robotics, the body is not just a container for a model: its sensors, actuators, geometry, dynamics and action limits affect what the system can perceive and do. The environment then feeds back into the next decision.</p>
@@ -70,14 +71,14 @@
       <ul>
         <li><strong>Object manipulation:</strong> identify a cup, estimate its pose, choose a grasp, make contact, detect slip and adjust the grip or trajectory.</li>
         <li><strong>Mobile navigation:</strong> interpret a goal location, map obstacles, select a route, move, and re-plan when people or objects change the scene.</li>
-        <li><strong>Humanoid locomotion:</strong> coordinate foot placement, posture and whole-body motion while responding to contact changes and disturbances.</li>
+        <li><strong>Humanoid locomotion:</strong> coordinate foot placement, posture and whole-body motion while responding to contact changes and disturbances — the problem faced by humanoids such as Boston Dynamics' <a href="../robots/atlas.html">Atlas</a>.</li>
         <li><strong>Human–robot interaction:</strong> interpret a spoken or visual request, locate the relevant object, act within reach and safety limits, and verify the result.</li>
       </ul>
       <p>These examples require more than visual recognition or language understanding. They require a system to produce actions that remain useful under geometry, contact, timing, uncertainty and physical constraints. See the guides to <a href="robot-manipulation-explained.html">robot manipulation</a> and <a href="humanoid-robot-learning.html">how humanoid robots learn physical skills</a>.</p>
 
       <h2>Where vision-language-action models fit</h2>
       <p>Vision-language-action (VLA) models connect visual observations and language instructions to robot actions. They can provide a learned policy for tasks such as “pick up the red object and place it beside the bowl.” A VLA is one model family used in embodied AI; it is not a synonym for the whole field. Embodied systems may also use modular perception, symbolic or language-based planning, motion planning, reinforcement learning, imitation learning and low-level feedback control.</p>
-      <p>Research such as <a href="https://arxiv.org/abs/2307.15818" rel="noopener noreferrer">RT-2</a> explored transferring vision-language knowledge into robotic control. <a href="https://arxiv.org/abs/2406.09246" rel="noopener noreferrer">OpenVLA</a> is an open vision-language-action model trained on diverse robot demonstrations. These systems illustrate how pretrained models can help interpret instructions and generate actions, while also showing why robot data, action representations and evaluation remain essential.</p>
+      <p>Research such as <a href="https://arxiv.org/abs/2307.15818" rel="noopener noreferrer">RT-2</a> explored transferring vision-language knowledge into robotic control. <a href="https://arxiv.org/abs/2406.09246" rel="noopener noreferrer">OpenVLA</a> is an open vision-language-action model trained on diverse robot demonstrations. These systems illustrate how pretrained models can help interpret instructions and generate actions, while also showing why robot data, action representations and evaluation remain essential. In production, the same ideas appear in <a href="../companies/physical-intelligence.html">Physical Intelligence</a>'s <a href="../models/pi0.html">π0</a>, Google DeepMind's <a href="../models/gemini-robotics-2.html">Gemini Robotics 2</a> and <a href="../companies/figure.html">Figure</a>'s Helix model for humanoid control.</p>
       <p>For the model-level details, continue to <a href="vision-language-action-models.html">vision-language-action models for robots</a> and <a href="robot-foundation-models.html">robot foundation models</a>.</p>
 
       <h2>Why robot data and cross-embodiment learning matter</h2>
