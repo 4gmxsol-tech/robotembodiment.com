@@ -12,7 +12,7 @@ ARTICLE = ROOT / "articles" / "what-is-embodied-ai.html"
 LISTING = ROOT / "articles.html"
 SITEMAP = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/what-is-embodied-ai.html"
-EXPECTED_DATE = "2026-11-14"
+EXPECTED_DATE = "2026-11-18"
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -85,7 +85,7 @@ assert schema.get("datePublished") == "2026-09-26"
 assert schema.get("dateModified") == EXPECTED_DATE
 assert schema.get("mainEntityOfPage") == PAGE_URL
 
-assert "Updated November 14, 2026" in article
+assert "Updated November 18, 2026" in article
 
 benchmark_url = "https://humanoidbehavior.com/benchmark.html"
 benchmark_section = re.search(
