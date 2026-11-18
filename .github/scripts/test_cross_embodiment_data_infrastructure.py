@@ -11,7 +11,7 @@ ARTICLE_PATH = ROOT / "articles" / "cross-embodiment-robotics.html"
 LISTING_PATH = ROOT / "articles.html"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 PAGE_URL = "https://robotembodiment.com/articles/cross-embodiment-robotics.html"
-EXPECTED_MODIFIED = "2026-11-14"
+EXPECTED_MODIFIED = "2026-11-18"
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -82,7 +82,7 @@ assert parser.h1 == [article_schema.get("headline")], "Visible H1 must match the
 
 visible_text = " ".join(parser.text)
 assert "Published October 6, 2026" in visible_text
-assert "Updated November 14, 2026" in visible_text
+assert "Updated November 18, 2026" in visible_text
 for phrase in (
     "cross-embodiment robotics data infrastructure",
     "cross-embodiment data collection",
